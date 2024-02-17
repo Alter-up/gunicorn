@@ -18,12 +18,13 @@ AUTORISATION_URL = "" #The obtained URL
 app = Flask(__name__)
 
 
-
 @app.route('/')
 def main():
     return redirect(AUTORISATION_URL)
 
 
+
+@app.route('/callback')
 def callback():
     print("flag")
     if request.values.get('error'):
@@ -83,7 +84,6 @@ def callback():
 
     print(response.text)
     return redirect(REDIRECT_URL)
-
 
 if __name__ == "__main__":
       app.run(debug=True)
