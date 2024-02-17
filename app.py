@@ -26,9 +26,7 @@ def main():
     return redirect(AUTORISATION_URL)
 
 
-@app.route('/')
-def hello_world():
-    return 'Hello, world!'
+
 
 def callback():
     print("flag")
