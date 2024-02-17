@@ -1,0 +1,91 @@
+from flask import Flask, request, redirect
+import requests
+
+
+API_ENDPOINT = 'https://discord.com/api/v10'
+TOKEN_URL = "https://discord.com/api/oauth2/token"
+
+
+OAUTH2_CLIENT_ID = "1207306611476004895" #Your client ID
+OAUTH2_CLIENT_SECRET = "KB4cSRltFrVJmSI7Fp1ljG71KtFo9IfH" #Your client secret
+OAUTH2_REDIRECT_URI = "http://localhost:5000/callback" #Your redirect URL
+BOT_TOKEN = "MTIwNzMwNjYxMTQ3NjAwNDg5NQ.GtjNoh.1WITsjBjExDjOwtNkd0VyrN6j9P2j7NsuxXnVc" #"Your application token here"
+REDIRECT_URL = "https://discord.com/invite/w3n3XQqdaX" #Where you wish to redirect your user.
+GUILD_ID = 1207933093491515422 #The ID of the guild you want them to join
+ROLE_IDS = [0] #List of the IDs of the roles you want them to get
+AUTORISATION_URL = "" #The obtained URL
+
+
+app = Flask(__name__)
+
+
+@app.route('/')
+def main():
+    return redirect(AUTORISATION_URL)
+
+
+
+@app.route('/callback')
+def callback():
+    print("flag")
+    if request.values.get('error'):
+        return request.values['error']
+
+    args = request.args
+    code = args.get('code')
+
+    data = {
+        'client_id': OAUTH2_CLIENT_ID,
+        'client_secret': OAUTH2_CLIENT_SECRET,
+        'grant_type': 'authorization_code',
+        'code': code,
+        'redirect_uri': OAUTH2_REDIRECT_URI
+    }
+    headers = {
+        'Content-Type': 'application/x-www-form-urlencoded'
+    }
+
+    r = requests.post("https://discord.com/api/v10/oauth2/token", data=data, headers=headers)
+    r.raise_for_status()
+
+    #Get the acces token
+    access_token = r.json()["access_token"]
+
+    #Get info of the user, to get the id
+    url = f"{API_ENDPOINT}/users/@me"
+
+    headers = {
+        "Authorization": f"Bearer {access_token}",
+        'Content-Type': 'application/json'
+    }
+
+    #This will contain the information
+    response = requests.get(url=url, headers=headers)
+
+    print(response.json())
+
+    #Extract the id
+    user_id = response.json()["id"]
+
+    #URL for adding a user to a guild
+    url = f"{API_ENDPOINT}/guilds/{GUILD_ID}/members/{user_id}"
+
+    headers = {
+        "Authorization": f"Bot {BOT_TOKEN}"
+    }
+
+    #These lines specifies the data given. Acces_token is mandatory, roles is an array of role ids the user will start with.
+    data = {
+        "access_token": access_token,
+        "roles": ROLE_IDS
+    }
+
+    #Put the request
+    response = requests.put(url=url, headers=headers, json=data)
+
+    print(response.text)
+    return redirect(REDIRECT_URL)
+
+
+if __name__ == "__main__":
+    app.run(host='0.0.0.0', port=4567)
