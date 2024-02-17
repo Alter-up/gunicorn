@@ -17,7 +17,7 @@ AUTORISATION_URL = "" #The obtained URL
 
 app = Flask(__name__)
 
-@app.route('/')
+@app.route('/callback')
 def hello_world():
     return 'Hello, world!'
 
