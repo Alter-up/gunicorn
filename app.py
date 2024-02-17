@@ -22,9 +22,6 @@ AUTORISATION_URL = "" #The obtained URL
 def main():
     return redirect(AUTORISATION_URL)
 
-@app.route('/callback')
-def hello_world():
-    return 'Hello, world!'
 
 @app.route('/callback')
 
