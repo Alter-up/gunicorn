@@ -27,7 +27,8 @@ def main():
 
 
 @app.route('/callback')
-
+def hello_world():
+    return 'Hello, world!'
 
 def callback():
     print("flag")
