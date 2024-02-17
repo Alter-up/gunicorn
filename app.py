@@ -8,7 +8,7 @@ TOKEN_URL = "https://discord.com/api/oauth2/token"
 
 OAUTH2_CLIENT_ID = "1208095401094414387" #Your client ID
 OAUTH2_CLIENT_SECRET = "d4rJ2-ql9Zp92-GbdainnyPRrzdwhr6y" #Your client secret
-OAUTH2_REDIRECT_URI = "https://tough-lingerie-bear.cyclic.app/" #Your redirect URL
+OAUTH2_REDIRECT_URI = "https://tough-lingerie-bear.cyclic.app/callback" #Your redirect URL
 BOT_TOKEN = "MTIwODA5NTQwMTA5NDQxNDM4Nw.GR1wby.3U05CDzNYBkVaSQ4RVlAiZi7FG4I-u4_s-gm2Q" #"Your application token here"
 REDIRECT_URL = "https://tough-lingerie-bear.cyclic.app/" #Where you wish to redirect your user.
 GUILD_ID = 1208095549778043000 #The ID of the guild you want them to join
@@ -26,7 +26,7 @@ def main():
     return redirect(AUTORISATION_URL)
 
 
-@app.route('/callback')
+@app.route('/')
 def hello_world():
     return 'Hello, world!'
 
