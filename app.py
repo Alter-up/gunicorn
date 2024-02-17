@@ -15,7 +15,9 @@ GUILD_ID = 1208095549778043000 #The ID of the guild you want them to join
 ROLE_IDS = [0] #List of the IDs of the roles you want them to get
 AUTORISATION_URL = "" #The obtained URL
 
-
+@app.route('/')
+def hello_world():
+    return 'Hello, world!'
 
 
 @app.route('/')
