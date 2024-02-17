@@ -17,9 +17,8 @@ AUTORISATION_URL = "" #The obtained URL
 
 app = Flask(__name__)
 
-@app.route('/callback')
-def hello_world():
-    return 'Hello, world!'
+
+
 
 
 @app.route('/')
@@ -90,6 +89,8 @@ def callback():
     print(response.text)
     return redirect(REDIRECT_URL)
 
+def hello_world():
+    return 'Hello, world!'
 
 if __name__ == "__main__":
       app.run(debug=True)
