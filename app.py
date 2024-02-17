@@ -19,13 +19,9 @@ app = Flask(__name__)
 
 
 
-
-
 @app.route('/')
 def main():
     return redirect(AUTORISATION_URL)
-
-
 
 
 def callback():
