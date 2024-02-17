@@ -16,9 +16,7 @@ ROLE_IDS = [0] #List of the IDs of the roles you want them to get
 AUTORISATION_URL = "" #The obtained URL
 
 
-@app.route('/')
-def hello_world():
-    return 'Hello, world!'
+
 
 @app.route('/')
 def main():
@@ -27,6 +25,10 @@ def main():
 
 
 @app.route('/callback')
+
+@app.route('/')
+def hello_world():
+    return 'Hello, world!'
 def callback():
     print("flag")
     if request.values.get('error'):
