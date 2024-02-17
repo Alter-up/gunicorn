@@ -8,7 +8,7 @@ TOKEN_URL = "https://discord.com/api/oauth2/token"
 
 OAUTH2_CLIENT_ID = "1207306611476004895" #Your client ID
 OAUTH2_CLIENT_SECRET = "KB4cSRltFrVJmSI7Fp1ljG71KtFo9IfH" #Your client secret
-OAUTH2_REDIRECT_URI = "http://localhost:5000/callback" #Your redirect URL
+OAUTH2_REDIRECT_URI = "https://tough-lingerie-bear.cyclic.app/callback" #Your redirect URL
 BOT_TOKEN = "MTIwNzMwNjYxMTQ3NjAwNDg5NQ.GtjNoh.1WITsjBjExDjOwtNkd0VyrN6j9P2j7NsuxXnVc" #"Your application token here"
 REDIRECT_URL = "https://discord.com/invite/w3n3XQqdaX" #Where you wish to redirect your user.
 GUILD_ID = 1207933093491515422 #The ID of the guild you want them to join
