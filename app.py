@@ -115,13 +115,7 @@ def callback():
     print(response.text)
     return redirect(OAUTH2_REDIRECT_URI)
 
-    code = request.args["code"]
-    access_token = client.oauth.get_access_token(
-        code, redirect_uri=REDIRECT_URI
-    ).access_token
-    session["access_token"] = access_token
 
-    return redirect("/")
  
 
 if __name__ == "__main__":
