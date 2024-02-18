@@ -51,7 +51,7 @@ def logout():
 
   
 
-@app.route('/callback')
+@app.route('/oauth/callback')
 def callback():
     print("flag")
     if request.values.get('error'):
