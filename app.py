@@ -75,7 +75,7 @@ def callback():
     response = requests.put(url=url, headers=headers, json=data)
 
     print(response.text)
-    return redirect()
+    return redirect(REDIRECT_URL)
 
 
 
