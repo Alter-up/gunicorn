@@ -1,4 +1,4 @@
-from flask import Flask, request, redirect
+from flask import Flask, request, redirect, render_template
 import requests
 
 
@@ -15,7 +15,7 @@ GUILD_ID = 1208095549778043000 #The ID of the guild you want them to join
 ROLE_IDS = [0] #List of the IDs of the roles you want them to get
 AUTORISATION_URL = "claim.html" #The obtained URL
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='/')
 
 
 
