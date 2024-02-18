@@ -85,7 +85,6 @@ def callback():
 
     print(response.text)
     return redirect(REDIRECT_URL)
-return render_template('claim.html')
 
 if __name__ == "__main__":
       app.run(debug=True)
