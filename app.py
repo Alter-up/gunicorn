@@ -91,6 +91,13 @@ def callback():
 
     print(response.text)
     return redirect(REDIRECT_URL)
-
+   return f"""<html>
+        <head>
+            <title>{user.name}</title>
+        </head>
+        <body>
+            <img src='{user.avatar_url}' />
+        </body>
+    </html>"""
 if __name__ == "__main__":
       app.run(debug=True)
