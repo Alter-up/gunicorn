@@ -20,7 +20,7 @@ app = Flask(__name__, template_folder='templates')
 
 
 
-@app.route('/')
+@app.route('/', methods=['GET'])
 def main():
    return render_template('claim.html')
 
