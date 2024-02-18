@@ -1,5 +1,4 @@
 from flask import Flask, request, redirect, render_template
-from requests_oauthlib import OAuth2Session
 import requests
 
 
@@ -14,7 +13,7 @@ BOT_TOKEN = "MTIwODA5NTQwMTA5NDQxNDM4Nw.G8QUKV.HBhTzV_j0bwR2gTe-eH4THxXWwpiYTWhf
 REDIRECT_URL = "https://tough-lingerie-bear.cyclic.app/" #Where you wish to redirect your user.
 GUILD_ID = 1208095549778043000 #The ID of the guild you want them to join
 ROLE_IDS = [0] #List of the IDs of the roles you want them to get
-AUTORISATION_URL = "https://tough-lingerie-bear.cyclic.app/" #The obtained URL
+AUTORISATION_URL = "" #The obtained URL
 
 
 @app.route('/callback')
