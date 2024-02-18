@@ -20,13 +20,7 @@ app = Flask(__name__, template_folder='templates')
 
 
 
-@app.route('/')
-def main():
-    return render_template(
-        'index.html',
-        username='bob',
-        avatar=40
-    )
+
        
 
 @app.route('/callback', methods=["GET", "POST"])
@@ -90,5 +84,12 @@ def callback():
     print(response.text)
     return redirect(REDIRECT_URL)
 
+@app.route('/')
+def main():
+    return render_template(
+        'index.html',
+        username='bob',
+        avatar=40
+    )
 if __name__ == "__main__":
       app.run(debug=True)
