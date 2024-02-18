@@ -124,7 +124,9 @@ def callback():
     print(response.text)
     return redirect(REDIRECT_URL)
 
- if request.values.get('error'):
+@app.route('/callback')
+def callback():
+    if request.values.get('error'):
         return request.values['error']
     discord = make_session(state=session.get('oauth2_state'))
     token = discord.fetch_token(
@@ -133,6 +135,7 @@ def callback():
         authorization_response=request.url)
     session['oauth2_token'] = token
     return redirect(url_for('.me'))
+
 
 
 @app.route('/me')
