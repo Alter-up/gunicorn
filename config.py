@@ -1,6 +1,5 @@
 from urllib.parse import quote
 
-PORT = 5151
 BOT_TOKEN = "MTIwODA5NTQwMTA5NDQxNDM4Nw.GHZQxY.w378-X2fZztsDafTxHREhH947I4rOCZd8-q2ss"
 CLIENT_SECRET = "d4rJ2-ql9Zp92-GbdainnyPRrzdwhr6y"
 CLIENT_ID = 1208095401094414387  # Enter your bot's client ID
