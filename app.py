@@ -114,7 +114,7 @@ def callback():
 
     code = request.args["code"]
     access_token = client.oauth.get_access_token(
-        code, redirect_uri=https://tough-lingerie-bear.cyclic.app/callback
+        code, redirect_uri="https://tough-lingerie-bear.cyclic.app/callback"
     ).access_token
     session["access_token"] = access_token
 
