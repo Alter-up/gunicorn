@@ -40,7 +40,7 @@ def home():
 
 @app.route("/login")
 def login():
-    return redirect(OAUTH2_REDIRECT_URI)
+    return redirect(OAUTH_URL)
 
 
 @app.route("/logout")
@@ -48,10 +48,18 @@ def logout():
     session.pop("access_token")
     return redirect("/")
 
+@app.route("/oauth/callback")
+def oauth_callback():
+    code = request.args["code"]
+    access_token = client.oauth.get_access_token(
+        code, redirect_uri=REDIRECT_URI
+    ).access_token
+    session["access_token"] = access_token
 
+    return redirect("/")
   
 
-@app.route('/oauth/callback')
+@app.route('/callback')
 def callback():
     print("flag")
     if request.values.get('error'):
@@ -110,15 +118,9 @@ def callback():
     response = requests.put(url=url, headers=headers, json=data)
 
     print(response.text)
-   
+    return redirect(OAUTH2_REDIRECT_URI)
 
-    code = request.args["code"]
-    access_token = client.oauth.get_access_token(
-        code, redirect_uri=OAUTH2_REDIRECT_URI
-    ).access_token
-    session["access_token"] = access_token
-
-    return redirect("/")
+ 
 
 if __name__ == "__main__":
       app.run(debug=True)
