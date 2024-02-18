@@ -124,13 +124,16 @@ def callback():
     print(response.text)
     return redirect(REDIRECT_URL)
 
-discord = make_session(state=session.get('oauth2_state'))
+ if request.values.get('error'):
+        return request.values['error']
+    discord = make_session(state=session.get('oauth2_state'))
     token = discord.fetch_token(
         TOKEN_URL,
         client_secret=OAUTH2_CLIENT_SECRET,
         authorization_response=request.url)
     session['oauth2_token'] = token
     return redirect(url_for('.me'))
+
 
 @app.route('/me')
 def me():
