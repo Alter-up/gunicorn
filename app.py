@@ -18,7 +18,7 @@ AUTORISATION_URL = "claim.html" #The obtained URL
 app = Flask(__name__)
 
 
-@app.route('/callback')
+@app.route('/')
 def main():
     return redirect(AUTORISATION_URL)
 
@@ -83,6 +83,8 @@ def callback():
 
     print(response.text)
     return redirect(REDIRECT_URL)
+
+  return(render_template('claim.html')
 
 if __name__ == "__main__":
       app.run(debug=True)
