@@ -17,20 +17,6 @@ ROLE_IDS = [0] #List of the IDs of the roles you want them to get
 AUTORISATION_URL = "https://tough-lingerie-bear.cyclic.app/" #The obtained URL
 
 
-
-
-
-@app.route('/')
-def index():
-    scope = request.args.get(
-        'scope',
-        'identify email connections guilds guilds.join')
-    discord = make_session(scope=scope.split(' '))
-    authorization_url, state = discord.authorization_url(AUTHORIZATION_BASE_URL)
-    session['oauth2_state'] = state
-    return redirect(authorization_url)
-
-
 @app.route('/callback')
 def callback():
     print("flag")
