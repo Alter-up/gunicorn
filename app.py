@@ -110,7 +110,7 @@ def callback():
     response = requests.put(url=url, headers=headers, json=data)
 
     print(response.text)
-    return redirect(REDIRECT_URL)
+   
 
     code = request.args["code"]
     access_token = client.oauth.get_access_token(
