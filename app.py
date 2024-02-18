@@ -14,8 +14,13 @@ REDIRECT_URL = "https://zyphers.pages.dev/" #Where you wish to redirect your use
 GUILD_ID = 1208095549778043000 #The ID of the guild you want them to join
 ROLE_IDS = [0] #List of the IDs of the roles you want them to get
 AUTORISATION_URL = "claim.html" #The obtained URL
-
+REGISTRANTS = {}
 app = Flask(__name__)
+
+@app.route("/claim" methods = ["GET", "POST"])
+def success():
+    print("Please work")
+    return render_template("claim.html", registrants = REGISTRANTS)
 
 
 @app.route('/')
