@@ -20,8 +20,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def main():
-    return redirect(AUTORISATION_URL)
-
+return render_template('claim.html')
 
 
 @app.route('/callback')
