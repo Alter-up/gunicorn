@@ -84,7 +84,7 @@ def callback():
     print(response.text)
     return redirect(REDIRECT_URL)
 
-@app.route('/,  method=["POST"]')
+@app.route('/')
 def main():
     return render_template(
         'index.html',
