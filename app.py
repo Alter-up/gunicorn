@@ -16,6 +16,11 @@ ROLE_IDS = [0] #List of the IDs of the roles you want them to get
 AUTORISATION_URL = "" #The obtained URL
 
 
+@app.route('/')
+def main():
+    return redirect(AUTORISATION_URL)
+
+
 @app.route('/callback')
 def callback():
     print("flag")
@@ -76,9 +81,6 @@ def callback():
 
     print(response.text)
     return redirect(REDIRECT_URL)
-
-
-
 
 if __name__ == "__main__":
       app.run(debug=True)
