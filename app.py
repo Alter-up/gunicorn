@@ -1,5 +1,3 @@
-
-
 from flask import Flask, render_template, request, redirect, session
 from zenora import APIClient
 
@@ -50,3 +48,6 @@ def oauth_callback():
     session["access_token"] = access_token
 
     return redirect("/")
+
+if __name__ == '__main__':
+    app.run() 
