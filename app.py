@@ -111,7 +111,7 @@ def callback():
     response = requests.put(url=url, headers=headers, json=data)
 
     print(response.text)
-    return redirect(REDIRECT_URI)
+    return redirect(REDIRECT_URL)
 
 if __name__ == "__main__":
       app.run(debug=True)
