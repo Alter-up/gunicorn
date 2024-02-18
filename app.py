@@ -10,10 +10,10 @@ OAUTH2_CLIENT_ID = "1208095401094414387" #Your client ID
 OAUTH2_CLIENT_SECRET = "d4rJ2-ql9Zp92-GbdainnyPRrzdwhr6y" #Your client secret
 OAUTH2_REDIRECT_URI = "https://tough-lingerie-bear.cyclic.app/callback" #Your redirect URL
 BOT_TOKEN = "MTIwODA5NTQwMTA5NDQxNDM4Nw.G8QUKV.HBhTzV_j0bwR2gTe-eH4THxXWwpiYTWhf0173g" #"Your application token here"
-REDIRECT_URL = "https://zyphers.pages.dev/" #Where you wish to redirect your user.
+REDIRECT_URL = "https://tough-lingerie-bear.cyclic.app/" #Where you wish to redirect your user.
 GUILD_ID = 1208095549778043000 #The ID of the guild you want them to join
 ROLE_IDS = [0] #List of the IDs of the roles you want them to get
-AUTORISATION_URL = "claim.html" #The obtained URL
+AUTORISATION_URL = "https://tough-lingerie-bear.cyclic.app/" #The obtained URL
 
 app = Flask(__name__, template_folder='templates')
 
@@ -23,7 +23,7 @@ app = Flask(__name__, template_folder='templates')
 @app.route('/')
 def main():
     return render_template(
-        'claim.html',
+        'index.html',
         username='bob',
         avatar=40
     )
