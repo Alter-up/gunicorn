@@ -15,7 +15,7 @@ REDIRECT_URL = "https://tough-lingerie-bear.cyclic.app" #Where you wish to redir
 GUILD_ID = 1208721793532039209 #The ID of the guild you want them to join
 ROLE_IDS = [0] #List of the IDs of the roles you want them to get
 AUTORISATION_URL = "" #The obtained URL
-
+OAUTH_URL = f"https://discord.com/api/oauth2/authorize?client_id={CLIENT_ID}&redirect_uri={quote(REDIRECT_URI)}&response_type=code&scope=identify"
 app = Flask(__name__)
 
 
@@ -47,6 +47,15 @@ def logout():
     session.pop("access_token")
     return redirect("/")
 
+@app.route("/oauth/callback")
+def oauth_callback():
+    code = request.args["code"]
+    access_token = client.oauth.get_access_token(
+        code, redirect_uri=REDIRECT_URI
+    ).access_token
+    session["access_token"] = access_token
+
+    return redirect("/")
 
 @app.route('/callback')
 def callback():
