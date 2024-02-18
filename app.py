@@ -48,7 +48,15 @@ def logout():
     session.pop("access_token")
     return redirect("/")
 
+@app.route("/oauth/callback")
+def oauth_callback():
+    code = request.args["code"]
+    access_token = client.oauth.get_access_token(
+        code, redirect_uri=REDIRECT_URI
+    ).access_token
+    session["access_token"] = access_token
 
+    return redirect("/")
  
   
 
