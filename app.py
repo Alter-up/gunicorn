@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, session
 from zenora import APIClient
+from urllib.parse import quote
 
 BOT_TOKEN = "MTIwODA5NTQwMTA5NDQxNDM4Nw.GHZQxY.w378-X2fZztsDafTxHREhH947I4rOCZd8-q2ss"
 CLIENT_SECRET = "d4rJ2-ql9Zp92-GbdainnyPRrzdwhr6y"
