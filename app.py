@@ -11,7 +11,7 @@ OAUTH2_CLIENT_ID = "1208095401094414387" #Your client ID
 OAUTH2_CLIENT_SECRET = "d4rJ2-ql9Zp92-GbdainnyPRrzdwhr6y" #Your client secret
 OAUTH2_REDIRECT_URI = "https://tough-lingerie-bear.cyclic.app/callback" #Your redirect URL
 BOT_TOKEN = "MTIwODA5NTQwMTA5NDQxNDM4Nw.GHZQxY.w378-X2fZztsDafTxHREhH947I4rOCZd8-q2ss" #"Your application token here"
-REDIRECT_URL = "https://tough-lingerie-bear.cyclic.app/callback"  # Your Oauth redirect URI
+REDIRECT_URL = "https://tough-lingerie-bear.cyclic.app"  # Your Oauth redirect URI
 
 GUILD_ID = 1208721793532039209 #The ID of the guild you want them to join
 ROLE_IDS = [0] #List of the IDs of the roles you want them to get
