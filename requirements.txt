@@ -14,3 +14,4 @@ Zenora
 requests-oauthlib
 discord-oauth2
 discord-oauth2.py
+Quart-OAuth2-Discord
