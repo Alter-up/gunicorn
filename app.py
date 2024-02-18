@@ -25,7 +25,7 @@ def main():
    return render_template('claim.html')
 
 
-@app.route('/callback')
+@app.route('/callback', methods=["GET", "POST"])
 def callback():
     print("flag")
     if request.values.get('error'):
@@ -85,6 +85,7 @@ def callback():
 
     print(response.text)
     return redirect(REDIRECT_URL)
+return render_template('claim.html')
 
 if __name__ == "__main__":
       app.run(debug=True)
