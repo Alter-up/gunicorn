@@ -16,8 +16,6 @@ GUILD_ID = 1208095549778043000 #The ID of the guild you want them to join
 ROLE_IDS = [0] #List of the IDs of the roles you want them to get
 AUTORISATION_URL = "https://tough-lingerie-bear.cyclic.app/" #The obtained URL
 
-API_BASE_URL = 'https://discord.com/api/v10'
-AUTHORIZATION_BASE_URL = API_BASE_URL + '/oauth2/authorize'
 
 
 
@@ -92,16 +90,10 @@ def callback():
     response = requests.put(url=url, headers=headers, json=data)
 
     print(response.text)
-    return redirect(url_for('.me'))
+    return redirect()
 
 
 
-@app.route('/me')
-def me():
-    discord = make_session(token=session.get('oauth2_token'))
-    user = discord.get(API_BASE_URL + '/users/@me').json()
-    guilds = discord.get(API_BASE_URL + '/users/@me/guilds').json()
-    connections = discord.get(API_BASE_URL + '/users/@me/connections').json()
-    return jsonify(user=user, guilds=guilds, connections=connections)
+
 if __name__ == "__main__":
       app.run(debug=True)
