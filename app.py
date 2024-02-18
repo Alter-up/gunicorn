@@ -19,10 +19,6 @@ app = Flask(__name__, template_folder='templates')
 
 
 
-
-
-       
-
 @app.route('/callback', methods=["GET", "POST"])
 def callback():
     print("flag")
@@ -85,7 +81,7 @@ def callback():
     return redirect(REDIRECT_URL)
 
 @app.route('/')
-def main():
+def home():
     return render_template(
         'index.html',
         username='bob',
