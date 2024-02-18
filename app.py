@@ -1,42 +1,85 @@
-import discordoauth2
-from flask import Flask, request
+from typing import List
 
-client = discordoauth2.Client(1208095401094414387, secret="d4rJ2-ql9Zp92-GbdainnyPRrzdwhr6y",
-redirect="https://tough-lingerie-bear.cyclic.app/oauth2", bot_token="MTIwODA5NTQwMTA5NDQxNDM4Nw.GHZQxY.w378-X2fZztsDafTxHREhH947I4rOCZd8-q2ss")
-app = Flask(__name__)
+from quart import Quart, redirect, render_template_string, request, url_for
 
-client.update_linked_roles_metadata([
-    {
-        "type": 2,
-        "key": "level",
-        "name": "Level",
-        "description": "The level the user is on"
-    },
-    {
-        "type": 7,
-        "key": "supporter",
-        "name": "Supporter",
-        "description": "Spent money to help the game"
-    }
-])
+from quart_oauth2_discord_py import DiscordOauth2Client, Guild
+
+app = Quart(__name__)
+app.secret_key = b"random bytes representing quart secret key"
+app.config['DISCORD_CLIENT_ID'] = "1208095401094414387"
+app.config['DISCORD_CLIENT_SECRET'] = 'd4rJ2-ql9Zp92-GbdainnyPRrzdwhr6y'
+app.config['SCOPES'] = ['identify', 'guilds']
+app.config['DISCORD_REDIRECT_URI'] = 'ttps://tough-lingerie-bear.cyclic.app/callback'
+app.config['DISCORD_BOT_TOKEN'] = 'MTIwODA5NTQwMTA5NDQxNDM4Nw.GHZQxY.w378-X2fZztsDafTxHREhH947I4rOCZd8-q2ss'
+
+client = DiscordOauth2Client(app)
+
 
 @app.route('/')
-def main():
-  return redirect(client.generate_uri(scope=["identify", "connections", "guilds", "role_connections.write"]))
+async def index():
+    return "Hello!"
 
-@app.route("/oauth2")
-def oauth2():
-    code = request.args.get("code")
 
-    access = client.exchange_code(code)
+@app.route('/login/', methods=['GET'])
+async def login():
+    return await client.create_session()
 
-    access.update_metadata("Platform Name", "Username",  level=69, supporter=True)
 
-    identify = access.fetch_identify()
-    connections = access.fetch_connections()
-    guilds = access.fetch_guilds()
+@app.route('/callback')
+async def callback():
+    await client.callback()
+    return redirect(url_for('index'))
 
-    return f"""{identify}<br><br>{connections}<br><br>{guilds}"""
 
-if __name__ == "__main__":
-      app.run(debug=True)
+def return_guild_names_owner(guilds_: List[Guild]):
+    # print(list(sorted([fetch_guild.name for fetch_guild in guilds_ if fetch_guild.is_owner_of_guild()])))
+    return list(sorted([fetch_guild.name for fetch_guild in guilds_ if fetch_guild.is_owner_of_guild()]))
+
+
+def search_guilds_for_name(guilds_, query):
+    # print(list(sorted([fetch_guild.name for fetch_guild in guilds_ if fetch_guild.is_owner_of_guild() and fetch_guild.name == query])))
+    return list(sorted([fetch_guild.name for fetch_guild in guilds_ if fetch_guild.is_owner_of_guild() and fetch_guild.name == query]))
+
+
+@app.route('/guilds')
+async def guilds():
+    template_string = """
+    <!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <title>Guilds</title>
+        </head>
+        <body>
+            <h1>Your guilds: </h1>
+            <ol>
+            {% for guild_name in guild_names %}
+                <li>{{ guild_name }}</li>
+            {% endfor %}
+            </ol>
+        </body>
+    </html>
+    """
+    if request.args.get('guild_name'):
+        return await render_template_string(template_string, guild_names=search_guilds_for_name(await client.fetch_guilds(), request.args.get('guild_name')))
+    return await render_template_string(template_string, guild_names=return_guild_names_owner(await client.fetch_guilds()))
+
+
+@app.route('/me')
+@client.is_logged_in
+async def me():
+    user = await client.fetch_user()
+    image = user.avatar_url
+    # noinspection HtmlUnknownTarget
+    return await render_template_string("""
+        <html lang="en">
+            <body>
+                <p>Login Successful</p>
+                <img src="{{ image_url }}" alt="Avatar url">
+            </body>
+        </html>
+        """, image_url=image)
+
+
+if __name__ == '__main__':
+    app.run()
