@@ -12,7 +12,4 @@ Werkzeug==2.3.4
 requests
 Zenora
 requests-oauthlib
-discord-oauth2
-discord-oauth2.py
-Quart-OAuth2-Discord
-Quart-OAuth2-Discord.py
+
