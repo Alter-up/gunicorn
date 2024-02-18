@@ -19,6 +19,11 @@ AUTORISATION_URL = "" #The obtained URL
 app = Flask(__name__)
 
 
+client = APIClient(BOT_TOKEN, client_secret=OAUTH2_CLIENT_SECRET)
+
+app.config["SECRET_KEY"] = "mysecret"
+
+
 @app.route("/")
 def home():
     access_token = session.get("access_token")
@@ -31,6 +36,16 @@ def home():
 
     return render_template("index.html", user=current_user)
 
+
+@app.route("/login")
+def login():
+    return redirect(OAUTH_URL)
+
+
+@app.route("/logout")
+def logout():
+    session.pop("access_token")
+    return redirect("/")
 
 
 @app.route('/callback')
