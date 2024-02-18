@@ -1,5 +1,5 @@
 import os
-from flask import Flask, g, session, redirect, request, url_for, jsonify, render_template, requests_oauthlib
+from flask import Flask, g, session, redirect, request, url_for, jsonify, render_template
 from requests_oauthlib import OAuth2Session
 
 OAUTH2_CLIENT_ID = "1208095401094414387"
