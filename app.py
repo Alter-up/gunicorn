@@ -20,16 +20,14 @@ app = Flask(__name__, template_folder='templates')
 
 
 
-@app.route('/', methods=['GET'])
-def hello_world():
-   return f"""<html>
-        <head>
-            <title>{user.name}</title>
-        </head>
-        <body>
-            <img src='{user.avatar_url}' />
-        </body>
-    </html>"""
+@app.route('/')
+def main():
+    return render_template(
+        'index.html',
+        username='bob',
+        avatar=40
+    )
+       
 
 @app.route('/callback', methods=["GET", "POST"])
 def callback():
@@ -91,13 +89,6 @@ def callback():
 
     print(response.text)
     return redirect(REDIRECT_URL)
-   return f"""<html>
-        <head>
-            <title>{user.name}</title>
-        </head>
-        <body>
-            <img src='{user.avatar_url}' />
-        </body>
-    </html>"""
+
 if __name__ == "__main__":
       app.run(debug=True)
