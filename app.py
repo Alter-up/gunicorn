@@ -23,7 +23,7 @@ app = Flask(__name__, template_folder='templates')
 @app.route('/')
 def main():
     return render_template(
-        'index.html',
+        'claim.html',
         username='bob',
         avatar=40
     )
