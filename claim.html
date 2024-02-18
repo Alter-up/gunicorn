@@ -1,7 +1,14 @@
 <!doctype html>
-<title>Hello from Flask</title>
-{% if name %}
-  <h1>Hello {{ name }}!</h1>
-{% else %}
-  <h1>Hello, World!</h1>
-{% endif %}
+<div>
+    Name: {{name}}
+</div>
+
+<div>
+    Age: {{age}}
+</div>
+
+<br><br>
+
+{% for fruit in fruits %}
+    <div>{{fruit}}</div>
+{% endfor %}
