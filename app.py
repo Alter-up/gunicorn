@@ -1,85 +1,52 @@
-from typing import List
-
-from quart import Quart, redirect, render_template_string, request, url_for
-
-from quart_oauth2_discord_py import DiscordOauth2Client, Guild
-
-app = Quart(__name__)
-app.secret_key = b"random bytes representing quart secret key"
-app.config['DISCORD_CLIENT_ID'] = "1208095401094414387"
-app.config['DISCORD_CLIENT_SECRET'] = 'd4rJ2-ql9Zp92-GbdainnyPRrzdwhr6y'
-app.config['SCOPES'] = ['identify', 'guilds']
-app.config['DISCORD_REDIRECT_URI'] = 'ttps://tough-lingerie-bear.cyclic.app/callback'
-app.config['DISCORD_BOT_TOKEN'] = 'MTIwODA5NTQwMTA5NDQxNDM4Nw.GHZQxY.w378-X2fZztsDafTxHREhH947I4rOCZd8-q2ss'
-
-client = DiscordOauth2Client(app)
 
 
-@app.route('/')
-async def index():
-    return "Hello!"
+from flask import Flask, render_template, request, redirect, session
+from zenora import APIClient
+
+BOT_TOKEN = "MTIwODA5NTQwMTA5NDQxNDM4Nw.GHZQxY.w378-X2fZztsDafTxHREhH947I4rOCZd8-q2ss"
+CLIENT_SECRET = "d4rJ2-ql9Zp92-GbdainnyPRrzdwhr6y"
+CLIENT_ID = 1208095401094414387  # Enter your bot's client ID
+REDIRECT_URI = (
+    f"https://tough-lingerie-bear.cyclic.app/callback"  # Your Oauth redirect URI
+)
+OAUTH_URL = f"https://discord.com/api/oauth2/authorize?client_id={CLIENT_ID}&redirect_uri={quote(REDIRECT_URI)}&response_type=code&scope=identify"
+
+app = Flask(__name__)
+client = APIClient(BOT_TOKEN, client_secret=CLIENT_SECRET)
+
+app.config["SECRET_KEY"] = "mysecret"
 
 
-@app.route('/login/', methods=['GET'])
-async def login():
-    return await client.create_session()
+@app.route("/")
+def home():
+    access_token = session.get("access_token")
+
+    if not access_token:
+        return render_template("index.html")
+
+    bearer_client = APIClient(access_token, bearer=True)
+    current_user = bearer_client.users.get_current_user()
+
+    return render_template("index.html", user=current_user)
 
 
-@app.route('/callback')
-async def callback():
-    await client.callback()
-    return redirect(url_for('index'))
+@app.route("/login")
+def login():
+    return redirect(OAUTH_URL)
 
 
-def return_guild_names_owner(guilds_: List[Guild]):
-    # print(list(sorted([fetch_guild.name for fetch_guild in guilds_ if fetch_guild.is_owner_of_guild()])))
-    return list(sorted([fetch_guild.name for fetch_guild in guilds_ if fetch_guild.is_owner_of_guild()]))
+@app.route("/logout")
+def logout():
+    session.pop("access_token")
+    return redirect("/")
 
 
-def search_guilds_for_name(guilds_, query):
-    # print(list(sorted([fetch_guild.name for fetch_guild in guilds_ if fetch_guild.is_owner_of_guild() and fetch_guild.name == query])))
-    return list(sorted([fetch_guild.name for fetch_guild in guilds_ if fetch_guild.is_owner_of_guild() and fetch_guild.name == query]))
+@app.route("/oauth/callback")
+def oauth_callback():
+    code = request.args["code"]
+    access_token = client.oauth.get_access_token(
+        code, redirect_uri=REDIRECT_URI
+    ).access_token
+    session["access_token"] = access_token
 
-
-@app.route('/guilds')
-async def guilds():
-    template_string = """
-    <!DOCTYPE html>
-    <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <title>Guilds</title>
-        </head>
-        <body>
-            <h1>Your guilds: </h1>
-            <ol>
-            {% for guild_name in guild_names %}
-                <li>{{ guild_name }}</li>
-            {% endfor %}
-            </ol>
-        </body>
-    </html>
-    """
-    if request.args.get('guild_name'):
-        return await render_template_string(template_string, guild_names=search_guilds_for_name(await client.fetch_guilds(), request.args.get('guild_name')))
-    return await render_template_string(template_string, guild_names=return_guild_names_owner(await client.fetch_guilds()))
-
-
-@app.route('/me')
-@client.is_logged_in
-async def me():
-    user = await client.fetch_user()
-    image = user.avatar_url
-    # noinspection HtmlUnknownTarget
-    return await render_template_string("""
-        <html lang="en">
-            <body>
-                <p>Login Successful</p>
-                <img src="{{ image_url }}" alt="Avatar url">
-            </body>
-        </html>
-        """, image_url=image)
-
-
-if __name__ == '__main__':
-    app.run()
+    return redirect("/")
