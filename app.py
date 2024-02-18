@@ -15,7 +15,7 @@ REDIRECT_URL = "https://tough-lingerie-bear.cyclic.app" #Where you wish to redir
 GUILD_ID = 1208721793532039209 #The ID of the guild you want them to join
 ROLE_IDS = [0] #List of the IDs of the roles you want them to get
 AUTORISATION_URL = "" #The obtained URL
-OAUTH_URL = f"https://discord.com/api/oauth2/authorize?client_id={CLIENT_ID}&redirect_uri={quote(REDIRECT_URI)}&response_type=code&scope=identify"
+OAUTH_URL = f"https://discord.com/oauth2/authorize?client_id=1208095401094414387&response_type=code&redirect_uri=https%3A%2F%2Ftough-lingerie-bear.cyclic.app%2Fcallback&scope=identify+guilds.join"
 app = Flask(__name__)
 
 
