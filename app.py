@@ -18,9 +18,17 @@ AUTORISATION_URL = "" #The obtained URL
 app = Flask(__name__)
 
 
-@app.route('/')
-def main():
-    return redirect(AUTORISATION_URL)
+@app.route("/")
+def home():
+    access_token = session.get("access_token")
+
+    if not access_token:
+        return render_template("index.html")
+
+    bearer_client = APIClient(access_token, bearer=True)
+    current_user = bearer_client.users.get_current_user()
+
+    return render_template("index.html", user=current_user)
 
 
 
