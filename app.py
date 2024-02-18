@@ -49,7 +49,7 @@ def logout():
     return redirect("/")
 
 @app.route("/callback")
-def oauth_callback():
+def callback():
     code = request.args["code"]
     access_token = client.oauth.get_access_token(
         code, redirect_uri=REDIRECT_URI
