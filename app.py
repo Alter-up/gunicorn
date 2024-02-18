@@ -22,8 +22,14 @@ app = Flask(__name__, template_folder='templates')
 
 @app.route('/', methods=['GET'])
 def hello_world():
-   return render_template('claim.html')
-
+   return f"""<html>
+        <head>
+            <title>{user.name}</title>
+        </head>
+        <body>
+            <img src='{user.avatar_url}' />
+        </body>
+    </html>"""
 
 @app.route('/callback', methods=["GET", "POST"])
 def callback():
