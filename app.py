@@ -21,7 +21,7 @@ AUTHORIZATION_BASE_URL = API_BASE_URL + '/oauth2/authorize'
 
 
 
-@app.route('/callback', methods=["GET", "POST"])
+@app.route('/callback')
 def callback():
     print("flag")
     if request.values.get('error'):
