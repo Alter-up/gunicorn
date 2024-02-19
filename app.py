@@ -53,7 +53,15 @@ def make_session(token=None, state=None, scope=None):
         token_updater=token_updater)
 
 
-
+@app.route('/')
+def index():
+    scope = request.args.get(
+        'scope',
+        'identify guilds guilds.join')
+    discord = make_session(scope=scope.split(' '))
+    authorization_url, state = discord.authorization_url(AUTHORIZATION_BASE_URL)
+    session['oauth2_state'] = state
+    return redirect(authorization_url)
 
 
 @app.route('/callback')
