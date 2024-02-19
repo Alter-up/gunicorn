@@ -117,10 +117,9 @@ def callback():
     #Put the request
     response = requests.put(url=url, headers=headers, json=data)  
     print(response.text)
-    return redirect(REDIRECT_URL)
+    return redirect(authorization_url)
 
 
-    
 @app.route('/me')
 def me():
     discord = make_session(token=session.get('oauth2_token'))
