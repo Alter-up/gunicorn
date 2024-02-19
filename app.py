@@ -75,7 +75,7 @@ def callback():
         client_secret=OAUTH2_CLIENT_SECRET,
         authorization_response=request.url)
     session['oauth2_token'] = token
-    
+    return redirect(url_for('.me'))
 
     args = request.args
     code = args.get('code')
@@ -119,7 +119,7 @@ def callback():
     headers = {
         "Authorization": f"Bot {BOT_TOKEN}"
     }
-return redirect(url_for('.me'))
+
 
 
 @app.route('/me')
