@@ -54,7 +54,7 @@ def make_session(token=None, state=None, scope=None):
 
 
 @app.route('/join')
-def index():
+def join():
     scope = request.args.get(
         'scope',
         'identify guilds guilds.join')
