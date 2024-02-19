@@ -24,11 +24,16 @@ AUTORISATION_URL = "" #The obtained URL
 app = Flask(__name__)
 
 
+@app.route('/')
+def main():
+    return redirect(AUTORISATION_URL)
+
+
 @app.route('/callback')
 def callback():
-        print("flag")
-    if request.values.get('error')
-    return request.values['error']
+    print("flag")
+    if request.values.get('error'):
+        return request.values['error']
 
     args = request.args
     code = args.get('code')
@@ -78,18 +83,12 @@ def callback():
         "access_token": access_token,
         "roles": ROLE_IDS
     }
-    scope = request.args.get(
-        'scope',
-        'identify email connections guilds guilds.join')
-    discord = make_session(scope=scope.split(' '))
-    authorization_url, state = discord.authorization_url(AUTHORIZATION_BASE_URL)
-    session['oauth2_state'] = state
 
-  #Put the request
+    #Put the request
     response = requests.put(url=url, headers=headers, json=data)
 
     print(response.text)
-    return redirect(REDIRECT_URI)
+    return redirect(REDIRECT_URL)
 
 
 if __name__ == '__main__':
