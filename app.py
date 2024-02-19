@@ -53,6 +53,13 @@ def make_session(token=None, state=None, scope=None):
         token_updater=token_updater)
 
 
+@app.route('/me')
+def me():
+    discord = make_session(token=session.get('oauth2_token'))
+    user = discord.get(API_BASE_URL + '/users/@me').json()
+    guilds = discord.get(API_BASE_URL + '/users/@me/guilds').json()
+    connections = discord.get(API_BASE_URL + '/users/@me/connections').json()
+    return render_template("index.html", user=user, guilds=guilds, connections=connections)
 
    
 
@@ -113,17 +120,11 @@ def callback():
     authorization_url, state = discord.authorization_url(AUTHORIZATION_BASE_URL)
     session['oauth2_state'] = state
 
+  #Put the request
+    response = requests.put(url=url, headers=headers, json=data)
 
-    #Put the request
-    response = requests.put(url=url, headers=headers, json=data)  
     print(response.text)
-       discord = make_session(token=session.get('oauth2_token'))
-    user = discord.get(API_BASE_URL + '/users/@me').json()
-    guilds = discord.get(API_BASE_URL + '/users/@me/guilds').json()
-    connections = discord.get(API_BASE_URL + '/users/@me/connections').json()
-    return render_template("index.html", user=user, guilds=guilds, connections=connections)
-
-
+    return redirect(REDIRECT_URL)
 
 
 if __name__ == '__main__':
