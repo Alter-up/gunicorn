@@ -27,7 +27,12 @@ TOKEN_URL = API_BASE_URL + '/oauth2/token'
 app = Flask(__name__)
 
 
+app = Flask(__name__)
+app.debug = True
 app.config['SECRET_KEY'] = OAUTH2_CLIENT_SECRET
+
+if 'http://' in OAUTH2_REDIRECT_URI:
+    os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = 'true'
 
 
 def token_updater(token):
@@ -60,7 +65,6 @@ def index():
     return redirect(authorization_url)
 
 
-
 @app.route('/callback')
 def callback():
     if request.values.get('error'):
@@ -74,7 +78,6 @@ def callback():
     return redirect(url_for('.me'))
 
 
-
 @app.route('/me')
 def me():
     discord = make_session(token=session.get('oauth2_token'))
@@ -83,5 +86,6 @@ def me():
     connections = discord.get(API_BASE_URL + '/users/@me/connections').json()
     return jsonify(user=user, guilds=guilds, connections=connections)
 
+
 if __name__ == '__main__':
-app.run()
+    app.run()
