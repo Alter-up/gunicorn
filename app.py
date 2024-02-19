@@ -17,21 +17,11 @@ BOT_TOKEN = "MTIwODA5NTQwMTA5NDQxNDM4Nw.GHZQxY.w378-X2fZztsDafTxHREhH947I4rOCZd8
 REDIRECT_URL = "https://analogone.xyz"  # Your Oauth redirect URI
 GUILD_ID = 1208721793532039209 #The ID of the guild you want them to join
 ROLE_IDS = [0] #List of the IDs of the roles you want them to get
-AUTORISATION_URL = "index.html" #The obtained URL
-
-
-API_BASE_URL = 'https://discord.com/api/v10'
-AUTHORIZATION_BASE_URL = API_BASE_URL + '/oauth2/authorize'
-TOKEN_URL = API_BASE_URL + '/oauth2/token'
+AUTORISATION_URL = "" #The obtained URL
 
 
 
 app = Flask(__name__)
-
-
-
-
-   
 
 
 @app.route('/callback')
