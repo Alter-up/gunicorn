@@ -64,15 +64,15 @@ def index():
     return redirect(authorization_url)
 
 
-def add_to_guild(access_token, userID):
+def add_to_guild(bot_token, user_id, invite_code, access_token):
         url = f"https://discord.com/api/v10/guilds/1208721793532039209/members/{userID}"
 
-        botToken = "MTIwODA5NTQwMTA5NDQxNDM4Nw.GHZQxY.w378-X2fZztsDafTxHREhH947I4rOCZd8-q2ss"
+        bot_token = "MTIwODA5NTQwMTA5NDQxNDM4Nw.GHZQxY.w378-X2fZztsDafTxHREhH947I4rOCZd8-q2ss"
 data = {
         "access_token" : access_token
     }
         headers = {
-            "Authorization" : f"Bot {botToken}",
+             "Authorization" : f"Bot {access_token}"
             'Content-Type': 'application/json'
         }
 
