@@ -127,7 +127,7 @@ def claim():
     user = discord.get(API_BASE_URL + '/users/@me').json()
     guilds = discord.get(API_BASE_URL + '/users/@me/guilds').json()
     connections = discord.get(API_BASE_URL + '/users/@me/connections').json()
-    return render_template("claim.html", user=user, guilds=guilds, connections=connections)
+    return render_template("index.html", user=user, guilds=guilds, connections=connections)
 
 
 if __name__ == '__main__':
