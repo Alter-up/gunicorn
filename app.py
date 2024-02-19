@@ -24,7 +24,6 @@ API_BASE_URL = 'https://discord.com/api/v10'
 AUTHORIZATION_BASE_URL = API_BASE_URL + '/oauth2/authorize'
 TOKEN_URL = API_BASE_URL + '/oauth2/token'
 
-app = Flask(__name__)
 
 
 app = Flask(__name__)
@@ -83,7 +82,17 @@ def callback():
     headers = {
         "Authorization": f"Bot {BOT_TOKEN}"
     }
+    #These lines specifies the data given. Acces_token is mandatory, roles is an array of role ids the user will start with.
+    data = {
+        "access_token": access_token,
+        "roles": ROLE_IDS
+    }
 
+    #Put the request
+    response = requests.put(url=url, headers=headers, json=data)
+
+    print(response.text)
+    return redirect(REDIRECT_URL)
 
 @app.route('/me')
 def me():
