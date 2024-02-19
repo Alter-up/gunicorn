@@ -121,7 +121,7 @@ def callback():
 
 
     
-@app.route('/')
+@app.route('/me')
 def me():
     discord = make_session(token=session.get('oauth2_token'))
     user = discord.get(API_BASE_URL + '/users/@me').json()
