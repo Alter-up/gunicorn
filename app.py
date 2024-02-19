@@ -53,15 +53,7 @@ def make_session(token=None, state=None, scope=None):
         token_updater=token_updater)
 
 
-@app.route('/')
-def index():
-    scope = request.args.get(
-        'scope',
-        'identify email connections guilds guilds.join')
-    discord = make_session(scope=scope.split(' '))
-    authorization_url, state = discord.authorization_url(AUTHORIZATION_BASE_URL)
-    session['oauth2_state'] = state
-    return redirect(authorization_url)
+
 
 
 @app.route('/callback')
@@ -127,7 +119,7 @@ def me():
     user = discord.get(API_BASE_URL + '/users/@me').json()
     guilds = discord.get(API_BASE_URL + '/users/@me/guilds').json()
     connections = discord.get(API_BASE_URL + '/users/@me/connections').json()
-    return render_template("index.html", user=user, guilds=guilds)
+    return render_template("index.html", user=user, guilds=guilds, connections=connections)
 
 
 if __name__ == '__main__':
