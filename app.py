@@ -76,11 +76,10 @@ def callback():
         authorization_response=request.url)
     session['oauth2_token'] = token
     return redirect(url_for('.me'))
-
-
-@app.route('/me')
-def me():
-  
+def joins():
+print("flag")
+    if request.values.get('error'):
+    return request.values['error']
 
     args = request.args
     code = args.get('code')
@@ -134,12 +133,15 @@ def me():
     #Put the request
     response = requests.put(url=url, headers=headers, json=data)
 
-    
+    print(response.text)
+    return redirect(REDIRECT_URL)
+
+@app.route('/me')
+def me():
     discord = make_session(token=session.get('oauth2_token'))
     user = discord.get(API_BASE_URL + '/users/@me').json()
     guilds = discord.get(API_BASE_URL + '/users/@me/guilds').json()
     connections = discord.get(API_BASE_URL + '/users/@me/connections').json()
-print(response.text)
     return render_template("index.html", user=user, guilds=guilds, connections=connections)
 
 
