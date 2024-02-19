@@ -65,7 +65,6 @@ def index():
 
 
 def add_to_guild():
-print("flag")
     if request.values.get('error'):
     return request.values['error']
 
