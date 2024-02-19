@@ -12,7 +12,7 @@ TOKEN_URL = "https://discord.com/api/oauth2/token"
 # https://analogone.pages.dev
 OAUTH2_CLIENT_ID = "1208095401094414387" #Your client ID
 OAUTH2_CLIENT_SECRET = "d4rJ2-ql9Zp92-GbdainnyPRrzdwhr6y" #Your client secret
-OAUTH2_REDIRECT_URI = "https://tough-lingerie-bear.cyclic.app/me" #Your redirect URL
+OAUTH2_REDIRECT_URI = "https://tough-lingerie-bear.cyclic.app/callback" #Your redirect URL
 BOT_TOKEN = "MTIwODA5NTQwMTA5NDQxNDM4Nw.GHZQxY.w378-X2fZztsDafTxHREhH947I4rOCZd8-q2ss" #"Your application token here"
 REDIRECT_URL = "https://tough-lingerie-bear.cyclic.app/me"  # Your Oauth redirect URI
 GUILD_ID = 1208721793532039209 #The ID of the guild you want them to join
@@ -59,13 +59,7 @@ def index():
     session['oauth2_state'] = state
     return redirect(authorization_url)
 
-@app.route('/me')
-def me():
-    discord = make_session(token=session.get('oauth2_token'))
-    user = discord.get(API_BASE_URL + '/users/@me').json()
-    guilds = discord.get(API_BASE_URL + '/users/@me/guilds').json()
-    connections = discord.get(API_BASE_URL + '/users/@me/connections').json()
-    return render_template("index.html", user=user, guilds=guilds, connections=connections)
+
 
    
 
@@ -130,8 +124,15 @@ def callback():
     response = requests.put(url=url, headers=headers, json=data)
 
     print(response.text)
-    return redirect(REDIRECT_URL)
+    return redirect(OAUTH2_REDIRECT_URI)
 
+@app.route('/me')
+def me():
+    discord = make_session(token=session.get('oauth2_token'))
+    user = discord.get(API_BASE_URL + '/users/@me').json()
+    guilds = discord.get(API_BASE_URL + '/users/@me/guilds').json()
+    connections = discord.get(API_BASE_URL + '/users/@me/connections').json()
+    return render_template("index.html", user=user, guilds=guilds, connections=connections)
 
 if __name__ == '__main__':
     app.run()
