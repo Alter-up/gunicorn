@@ -53,8 +53,8 @@ def make_session(token=None, state=None, scope=None):
         token_updater=token_updater)
 
 
-@app.route('/join')
-def join():
+@app.route('/')
+def index():
     scope = request.args.get(
         'scope',
         'identify guilds guilds.join')
@@ -127,7 +127,7 @@ def claim():
     user = discord.get(API_BASE_URL + '/users/@me').json()
     guilds = discord.get(API_BASE_URL + '/users/@me/guilds').json()
     connections = discord.get(API_BASE_URL + '/users/@me/connections').json()
-    return render_template("join.html", user=user, guilds=guilds, connections=connections)
+    return render_template("index.html", user=user, guilds=guilds, connections=connections)
 
 
 if __name__ == '__main__':
