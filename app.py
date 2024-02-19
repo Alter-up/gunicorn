@@ -57,7 +57,7 @@ def index():
     discord = make_session(scope=scope.split(' '))
     authorization_url, state = discord.authorization_url(AUTHORIZATION_BASE_URL)
     session['oauth2_state'] = state
-    return redirect(authorization_url)
+    return redirect(REDIRECT_URL)
 
 
 
@@ -124,7 +124,7 @@ def callback():
     response = requests.put(url=url, headers=headers, json=data)
 
     print(response.text)
-    return redirect(OAUTH2_REDIRECT_URI)
+    return redirect(REDIRECT_URI)
 
 @app.route('/me')
 def me():
