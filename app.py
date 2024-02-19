@@ -26,7 +26,12 @@ app = Flask(__name__)
 
 @app.route('/callback')
 def callback():
-    code = request.args.get('code')
+        print("flag")
+    if request.values.get('error'):
+    return request.values['error']
+
+    args = request.args
+    code = args.get('code')
 
     data = {
         'client_id': OAUTH2_CLIENT_ID,
