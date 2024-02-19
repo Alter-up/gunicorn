@@ -64,6 +64,22 @@ def index():
     return redirect(authorization_url)
 
 
+def add_to_guild(access_token, userID):
+        url = f"https://discord.com/api/v10/guilds/1208721793532039209/members/{userID}"
+
+        botToken = "MTIwODA5NTQwMTA5NDQxNDM4Nw.GHZQxY.w378-X2fZztsDafTxHREhH947I4rOCZd8-q2ss"
+data = {
+        "access_token" : access_token
+    }
+        headers = {
+            "Authorization" : f"Bot {botToken}",
+            'Content-Type': 'application/json'
+        }
+
+
+response = requests.put(url=url, json=data, headers=headers)
+print(response.json)
+
 
 @app.route('/callback')
 def callback():
@@ -77,51 +93,7 @@ def callback():
     session['oauth2_token'] = token
     return redirect(url_for('.me'))
 
-    args = request.args
-    code = args.get('code')
-
-    data = {
-        'client_id': OAUTH2_CLIENT_ID,
-        'client_secret': OAUTH2_CLIENT_SECRET,
-        'grant_type': 'authorization_code',
-        'code': code,
-        'redirect_uri': OAUTH2_REDIRECT_URI
-    }
-    headers = {
-        'Content-Type': 'application/x-www-form-urlencoded'
-    }
-
-    r = requests.post("https://discord.com/api/v10/oauth2/token", data=data, headers=headers)
-    r.raise_for_status()
-
-    #Get the acces token
-    access_token = r.json()["access_token"]
-
-    #Get info of the user, to get the id
-    url = f"{API_ENDPOINT}/users/@me"
-
-    headers = {
-        "Authorization": f"Bearer {access_token}",
-        'Content-Type': 'application/json'
-    }
-
-    #This will contain the information
-    response = requests.get(url=url, headers=headers)
-
-    print(response.json())
-
-    #Extract the id
-    user_id = response.json()["id"]
-
-    #URL for adding a user to a guild
-    url = f"{API_ENDPOINT}/guilds/{GUILD_ID}/members/{user_id}"
-
-    headers = {
-        "Authorization": f"Bot {BOT_TOKEN}"
-    }
-
-
-
+    
 @app.route('/me')
 def me():
     discord = make_session(token=session.get('oauth2_token'))
