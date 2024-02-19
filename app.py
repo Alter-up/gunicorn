@@ -66,12 +66,7 @@ def index():
 
 @app.route('/callback')
 def callback():
-    print("flag")
-    if request.values.get('error'):
-    return request.values['error']
-
-    args = request.args
-    code = args.get('code')
+    code = request.args.get('code')
 
     data = {
         'client_id': OAUTH2_CLIENT_ID,
