@@ -124,7 +124,6 @@ def callback():
  session['oauth2_token'] = token
   
     print(response.text)
-    return redirect(REDIRECT_URL)
   return redirect(url_for('.me'))
 
 
