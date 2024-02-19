@@ -80,9 +80,7 @@ def callback():
 
 @app.route('/me')
 def me():
-    print("flag")
-    if request.values.get('error'):
-    return request.values['error']
+  
 
     args = request.args
     code = args.get('code')
