@@ -1,54 +1,87 @@
-from flask import Flask, render_template, request, redirect, session
-from zenora import APIClient
-from urllib.parse import quote
 
-BOT_TOKEN = "MTIwODA5NTQwMTA5NDQxNDM4Nw.GHZQxY.w378-X2fZztsDafTxHREhH947I4rOCZd8-q2ss"
-CLIENT_SECRET = "d4rJ2-ql9Zp92-GbdainnyPRrzdwhr6y"
-CLIENT_ID = 1208095401094414387  # Enter your bot's client ID
-REDIRECT_URI = (
-    f"https://tough-lingerie-bear.cyclic.app/callback"  # Your Oauth redirect URI
-)
-OAUTH_URL = f"https://discord.com/api/oauth2/authorize?client_id={CLIENT_ID}&redirect_uri={quote(REDIRECT_URI)}&response_type=code&scope=identify"
+
+
+from flask import Flask, g, render_template, request, redirect, session, url_for, jsonify
+from requests_oauthlib import OAuth2Session
+import requests
+
+
+API_ENDPOINT = 'https://discord.com/api/v10'
+TOKEN_URL = "https://discord.com/api/oauth2/token"
+
+# https://analogone.pages.dev
+OAUTH2_CLIENT_ID = "1208095401094414387" #Your client ID
+OAUTH2_CLIENT_SECRET = "d4rJ2-ql9Zp92-GbdainnyPRrzdwhr6y" #Your client secret
+OAUTH2_REDIRECT_URI = "https://tough-lingerie-bear.cyclic.app/callback" #Your redirect URL
+BOT_TOKEN = "MTIwODA5NTQwMTA5NDQxNDM4Nw.GHZQxY.w378-X2fZztsDafTxHREhH947I4rOCZd8-q2ss" #"Your application token here"
+REDIRECT_URL = "https://tough-lingerie-bear.cyclic.app/callback"  # Your Oauth redirect URI
+GUILD_ID = 1208721793532039209 #The ID of the guild you want them to join
+ROLE_IDS = [0] #List of the IDs of the roles you want them to get
+AUTORISATION_URL = "" #The obtained URL
+
+
+API_BASE_URL = 'https://discord.com/api/v10'
+AUTHORIZATION_BASE_URL = API_BASE_URL + '/oauth2/authorize'
+TOKEN_URL = API_BASE_URL + '/oauth2/token'
 
 app = Flask(__name__)
-client = APIClient(BOT_TOKEN, client_secret=CLIENT_SECRET)
-
-app.config["SECRET_KEY"] = "mysecret"
 
 
-@app.route("/")
-def home():
-    access_token = session.get("access_token")
-
-    if not access_token:
-        return render_template("index.html")
-
-    bearer_client = APIClient(access_token, bearer=True)
-    current_user = bearer_client.users.get_current_user()
-
-    return render_template("index.html", user=current_user)
+app.config['SECRET_KEY'] = OAUTH2_CLIENT_SECRET
 
 
-@app.route("/login")
-def login():
-    return redirect(OAUTH_URL)
+def token_updater(token):
+    session['oauth2_token'] = token
 
 
-@app.route("/logout")
-def logout():
-    session.pop("access_token")
-    return redirect("/")
+def make_session(token=None, state=None, scope=None):
+    return OAuth2Session(
+        client_id=OAUTH2_CLIENT_ID,
+        token=token,
+        state=state,
+        scope=scope,
+        redirect_uri=OAUTH2_REDIRECT_URI,
+        auto_refresh_kwargs={
+            'client_id': OAUTH2_CLIENT_ID,
+            'client_secret': OAUTH2_CLIENT_SECRET,
+        },
+        auto_refresh_url=TOKEN_URL,
+        token_updater=token_updater)
 
 
-@app.route("/oauth/callback")
-def oauth_callback():
-    code = request.args["code"]
-    access_token = client.oauth.get_access_token(
-        code, redirect_uri=REDIRECT_URI
-    ).access_token
-    session["access_token"] = access_token
+@app.route('/')
+def index():
+    scope = request.args.get(
+        'scope',
+        'identify email connections guilds guilds.join')
+    discord = make_session(scope=scope.split(' '))
+    authorization_url, state = discord.authorization_url(AUTHORIZATION_BASE_URL)
+    session['oauth2_state'] = state
+    return redirect(authorization_url)
 
-    return redirect("/")
+
+
+@app.route('/callback')
+def callback():
+    if request.values.get('error'):
+        return request.values['error']
+    discord = make_session(state=session.get('oauth2_state'))
+    token = discord.fetch_token(
+        TOKEN_URL,
+        client_secret=OAUTH2_CLIENT_SECRET,
+        authorization_response=request.url)
+    session['oauth2_token'] = token
+    return redirect(url_for('.me'))
+
+
+
+@app.route('/me')
+def me():
+    discord = make_session(token=session.get('oauth2_token'))
+    user = discord.get(API_BASE_URL + '/users/@me').json()
+    guilds = discord.get(API_BASE_URL + '/users/@me/guilds').json()
+    connections = discord.get(API_BASE_URL + '/users/@me/connections').json()
+    return jsonify(user=user, guilds=guilds, connections=connections)
 
 if __name__ == '__main__':
-    app.run() 
+app.run()
