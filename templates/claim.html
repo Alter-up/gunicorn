@@ -1,14 +1,20 @@
 <!doctype html>
 <div>
-    Name: {{name}}
-</div>
+					<img
+						src="{{avatar}}"
+						class="rounded-full border-4 border-blue-500"
+						width="200"
+					/>
+				</div>
+				<div class="mt-5 container mx-auto">
+					<h1 class="font-medium text-center text-2xl">
+						Logged in as
+					</h1>
+					<h1 class="text-center font-bold text-3xl">
+						{{user.username}}
+					</h1>
 
-<div>
-    Age: {{age}}
-</div>
-
-<br><br>
-
-{% for fruit in fruits %}
-    <div>{{fruit}}</div>
-{% endfor %}
+					<div class="mt-3 margin">
+<h1>ID: {{user.id}}</h1>
+<h1>Guilds: {{email}}</h1>
+					</div>
