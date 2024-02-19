@@ -78,7 +78,8 @@ def callback():
     return redirect(url_for('.me'))
 
 def joins():
-
+ if request.values.get('error'):
+    return request.values['error']
     args = request.args
     code = args.get('code')
 
