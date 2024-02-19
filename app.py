@@ -75,16 +75,16 @@ def callback():
         client_secret=OAUTH2_CLIENT_SECRET,
         authorization_response=request.url)
     session['oauth2_token'] = token
-    return redirect(url_for('.me'))
+    return redirect(url_for('.index'))
 
 
-@app.route('/me')
-def me():
+@app.route('/index')
+def index():
     discord = make_session(token=session.get('oauth2_token'))
     user = discord.get(API_BASE_URL + '/users/@me').json()
     guilds = discord.get(API_BASE_URL + '/users/@me/guilds').json()
     connections = discord.get(API_BASE_URL + '/users/@me/connections').json()
-    return jsonify(user=user, guilds=guilds, connections=connections)
+    return render_template("index.html", user=user, guilds=guilds, connections=connections)
 
 
 if __name__ == '__main__':
