@@ -124,7 +124,6 @@ def callback():
 @app.route('/me')
 def me():
     discord = make_session(token=session.get('oauth2_token'))
-    avatar = user.avatar_url
     user = discord.get(API_BASE_URL + '/users/@me').json()
     guilds = discord.get(API_BASE_URL + '/users/@me/guilds').json()
     connections = discord.get(API_BASE_URL + '/users/@me/connections').json()
