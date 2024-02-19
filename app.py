@@ -65,7 +65,7 @@ def index():
 
 
 @app.route('/callback')
-def add_to_guild():
+def callback():
     print("flag")
     if request.values.get('error'):
     return request.values['error']
