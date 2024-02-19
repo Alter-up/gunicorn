@@ -14,7 +14,7 @@ OAUTH2_CLIENT_ID = "1208095401094414387" #Your client ID
 OAUTH2_CLIENT_SECRET = "d4rJ2-ql9Zp92-GbdainnyPRrzdwhr6y" #Your client secret
 OAUTH2_REDIRECT_URI = "https://tough-lingerie-bear.cyclic.app/callback" #Your redirect URL
 BOT_TOKEN = "MTIwODA5NTQwMTA5NDQxNDM4Nw.GHZQxY.w378-X2fZztsDafTxHREhH947I4rOCZd8-q2ss" #"Your application token here"
-REDIRECT_URL = "https://tough-lingerie-bear.cyclic.app/me"  # Your Oauth redirect URI
+REDIRECT_URL = "https://analogone.xyz"  # Your Oauth redirect URI
 GUILD_ID = 1208721793532039209 #The ID of the guild you want them to join
 ROLE_IDS = [0] #List of the IDs of the roles you want them to get
 AUTORISATION_URL = "index.html" #The obtained URL
@@ -27,37 +27,7 @@ TOKEN_URL = API_BASE_URL + '/oauth2/token'
 
 
 app = Flask(__name__)
-app.debug = True
-app.config['SECRET_KEY'] = OAUTH2_CLIENT_SECRET
 
-
-def token_updater(token):
-    session['oauth2_token'] = token
-
-
-def make_session(token=None, state=None, scope=None):
-    return OAuth2Session(
-        client_id=OAUTH2_CLIENT_ID,
-        token=token,
-        state=state,
-        scope=scope,
-        redirect_uri=OAUTH2_REDIRECT_URI,
-        auto_refresh_kwargs={
-            'client_id': OAUTH2_CLIENT_ID,
-            'client_secret': OAUTH2_CLIENT_SECRET,
-        },
-        auto_refresh_url=TOKEN_URL,
-        token_updater=token_updater)
-
-@app.route('/')
-def index():
-    scope = request.args.get(
-        'scope',
-        'identify guilds guilds.join')
-    discord = make_session(scope=scope.split(' '))
-    authorization_url, state = discord.authorization_url(AUTHORIZATION_BASE_URL)
-    session['oauth2_state'] = state
-    return redirect(REDIRECT_URL)
 
 
 
@@ -126,13 +96,6 @@ def callback():
     print(response.text)
     return redirect(REDIRECT_URI)
 
-@app.route('/me')
-def me():
-    discord = make_session(token=session.get('oauth2_token'))
-    user = discord.get(API_BASE_URL + '/users/@me').json()
-    guilds = discord.get(API_BASE_URL + '/users/@me/guilds').json()
-    connections = discord.get(API_BASE_URL + '/users/@me/connections').json()
-    return render_template("index.html", user=user, guilds=guilds, connections=connections)
 
 if __name__ == '__main__':
     app.run()
