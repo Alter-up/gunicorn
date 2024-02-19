@@ -61,20 +61,6 @@ def index():
     discord = make_session(scope=scope.split(' '))
     authorization_url, state = discord.authorization_url(AUTHORIZATION_BASE_URL)
     session['oauth2_state'] = state
-    return redirect(authorization_url)
-
-
-@app.route('/callback')
-def callback():
-    if request.values.get('error'):
-        return request.values['error']
-    discord = make_session(state=session.get('oauth2_state'))
-    token = discord.fetch_token(
-        TOKEN_URL,
-        client_secret=OAUTH2_CLIENT_SECRET,
-        authorization_response=request.url)
-    session['oauth2_token'] = token
-    return redirect(url_for('.me'))
 
 #URL for adding a user to a guild
     url = f"{API_ENDPOINT}/guilds/{GUILD_ID}/members/{user_id}"
@@ -92,7 +78,24 @@ def callback():
     response = requests.put(url=url, headers=headers, json=data)
 
     print(response.text)
-    return redirect(REDIRECT_URL)
+  
+
+
+    return redirect(authorization_url)
+
+
+@app.route('/callback')
+def callback():
+    if request.values.get('error'):
+        return request.values['error']
+    discord = make_session(state=session.get('oauth2_state'))
+    token = discord.fetch_token(
+        TOKEN_URL,
+        client_secret=OAUTH2_CLIENT_SECRET,
+        authorization_response=request.url)
+    session['oauth2_token'] = token
+    return redirect(url_for('.me'))
+
 
 @app.route('/me')
 def me():
