@@ -76,10 +76,8 @@ def callback():
         authorization_response=request.url)
     session['oauth2_token'] = token
     return redirect(url_for('.me'))
+
 def joins():
-print("flag")
-    if request.values.get('error'):
-    return request.values['error']
 
     args = request.args
     code = args.get('code')
