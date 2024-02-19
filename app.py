@@ -77,6 +77,13 @@ def callback():
     session['oauth2_token'] = token
     return redirect(url_for('.me'))
 
+#URL for adding a user to a guild
+    url = f"{API_ENDPOINT}/guilds/{GUILD_ID}/members/{user_id}"
+
+    headers = {
+        "Authorization": f"Bot {BOT_TOKEN}"
+    }
+
 
 @app.route('/me')
 def me():
