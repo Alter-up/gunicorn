@@ -117,11 +117,11 @@ def callback():
     #Put the request
     response = requests.put(url=url, headers=headers, json=data)  
     print(response.text)
-  return redirect(url_for('.me'))
+  return redirect(url_for('/'))
 
 
     
-@app.route('/me')
+@app.route('/')
 def me():
     discord = make_session(token=session.get('oauth2_token'))
     user = discord.get(API_BASE_URL + '/users/@me').json()
