@@ -115,9 +115,7 @@ def callback():
     }
 
     #Put the request
-    response = requests.put(url=url, headers=headers, json=data)
- session['oauth2_token'] = token
-  
+    response = requests.put(url=url, headers=headers, json=data)  
     print(response.text)
   return redirect(url_for('.me'))
 
