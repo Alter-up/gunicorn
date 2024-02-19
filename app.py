@@ -117,7 +117,7 @@ def callback():
     #Put the request
     response = requests.put(url=url, headers=headers, json=data)  
     print(response.text)
-  return redirect(AUTORISATION_URL)
+    return redirect(REDIRECT_URL)
 
 
     
