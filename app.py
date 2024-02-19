@@ -17,7 +17,7 @@ BOT_TOKEN = "MTIwODA5NTQwMTA5NDQxNDM4Nw.GHZQxY.w378-X2fZztsDafTxHREhH947I4rOCZd8
 REDIRECT_URL = "https://tough-lingerie-bear.cyclic.app/me"  # Your Oauth redirect URI
 GUILD_ID = 1208721793532039209 #The ID of the guild you want them to join
 ROLE_IDS = [0] #List of the IDs of the roles you want them to get
-AUTORISATION_URL = "index.html" #The obtained URL
+AUTORISATION_URL = "me.html" #The obtained URL
 
 
 API_BASE_URL = 'https://discord.com/api/v10'
@@ -127,7 +127,7 @@ def me():
     user = discord.get(API_BASE_URL + '/users/@me').json()
     guilds = discord.get(API_BASE_URL + '/users/@me/guilds').json()
     connections = discord.get(API_BASE_URL + '/users/@me/connections').json()
-    return render_template("index.html", user=user, guilds=guilds, connections=connections)
+    return render_template("me.html", user=user, guilds=guilds, connections=connections)
 
 
 if __name__ == '__main__':
