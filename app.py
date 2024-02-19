@@ -61,28 +61,25 @@ def index():
     discord = make_session(scope=scope.split(' '))
     authorization_url, state = discord.authorization_url(AUTHORIZATION_BASE_URL)
     session['oauth2_state'] = state
-
-#URL for adding a user to a guild
-    url = f"{API_ENDPOINT}/guilds/{GUILD_ID}/members/{user_id}"
-
-    headers = {
-        "Authorization": f"Bot {BOT_TOKEN}"
-    }
-    #These lines specifies the data given. Acces_token is mandatory, roles is an array of role ids the user will start with.
-    data = {
-        "access_token": access_token,
-        "roles": ROLE_IDS
-    }
-
-    #Put the request
-    response = requests.put(url=url, headers=headers, json=data)
-
-    print(response.text)
-  
-
-
     return redirect(authorization_url)
 
+def add_user_to_server(bot_token, user_id, invite_code, access_token) -> bool:
+    url = f'https://discordapp.com/api/v10/guilds/{server_id}/members/{user_id}'
+    headers = {
+        'Authorization': f'Bot {token}'
+    }
+
+    data = {
+        "access_token": access_token
+    }
+
+    response = requests.put(url, headers=headers, json=data)
+    if response.status_code == 201:
+        print(f'User {user_id} added to server with ID {server_id}')
+        return True
+    else:
+        print(f'Error adding user {user_id} to server with ID {server_id}')
+        return False
 
 @app.route('/callback')
 def callback():
