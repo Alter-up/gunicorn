@@ -64,8 +64,11 @@ def index():
     return redirect(authorization_url)
 
 
+@app.route('/callback')
 def add_to_guild():
-
+    print("flag")
+    if request.values.get('error'):
+    return request.values['error']
 
     args = request.args
     code = args.get('code')
