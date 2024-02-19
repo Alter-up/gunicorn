@@ -65,17 +65,17 @@ def index():
 
 
 def add_to_guild(bot_token, user_id, invite_code, access_token):
-        url = f"https://discord.com/api/v10/guilds/1208721793532039209/members/{userID}"
+url = f'https://discordapp.com/api/v10/guilds/{server_id}/members/{user_id}'
 
         bot_token = "MTIwODA5NTQwMTA5NDQxNDM4Nw.GHZQxY.w378-X2fZztsDafTxHREhH947I4rOCZd8-q2ss"
-data = {
-        "access_token" : access_token
-    }
+
         headers = {
              "Authorization" : f"Bot {access_token}"
             'Content-Type': 'application/json'
         }
-
+data = {
+        "access_token" : access_token
+    }
 
 response = requests.put(url=url, json=data, headers=headers)
 print(response.json)
