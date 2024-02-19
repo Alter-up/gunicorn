@@ -117,16 +117,13 @@ def callback():
     #Put the request
     response = requests.put(url=url, headers=headers, json=data)  
     print(response.text)
-    return redirect(authorization_url)
-
-
-@app.route('/me')
-def me():
-    discord = make_session(token=session.get('oauth2_token'))
+       discord = make_session(token=session.get('oauth2_token'))
     user = discord.get(API_BASE_URL + '/users/@me').json()
     guilds = discord.get(API_BASE_URL + '/users/@me/guilds').json()
     connections = discord.get(API_BASE_URL + '/users/@me/connections').json()
     return render_template("index.html", user=user, guilds=guilds, connections=connections)
+
+
 
 
 if __name__ == '__main__':
