@@ -75,10 +75,8 @@ def callback():
         client_secret=OAUTH2_CLIENT_SECRET,
         authorization_response=request.url)
     session['oauth2_token'] = token
-    return redirect(url_for('.me'))
+    
 
- if request.values.get('error'):
-    return request.values['error']
     args = request.args
     code = args.get('code')
 
@@ -121,18 +119,8 @@ def callback():
     headers = {
         "Authorization": f"Bot {BOT_TOKEN}"
     }
+return redirect(url_for('.me'))
 
-    #These lines specifies the data given. Acces_token is mandatory, roles is an array of role ids the user will start with.
-    data = {
-        "access_token": access_token,
-        "roles": ROLE_IDS
-    }
-
-    #Put the request
-    response = requests.put(url=url, headers=headers, json=data)
-
-    print(response.text)
-    return redirect(REDIRECT_URL)
 
 @app.route('/me')
 def me():
