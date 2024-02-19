@@ -27,7 +27,7 @@ app = Flask(__name__)
 @app.route('/callback')
 def callback():
         print("flag")
-    if request.values.get('error'):
+    if request.values.get('error')
     return request.values['error']
 
     args = request.args
