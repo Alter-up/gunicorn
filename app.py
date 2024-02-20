@@ -25,7 +25,7 @@ def login():
 
 
 # Route for dashboard
-@app.route('/dashboard', methods=['GET'])
+@app.route('/dashboard', methods=['POST','GET'])
 def dashboard():
     code = request.args.get('code')
     access_token = DiscordOauth.get_access_token(code)
