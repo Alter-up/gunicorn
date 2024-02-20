@@ -57,11 +57,11 @@ class DiscordOauth:
 
 def exchange_code(code):
   data = {
-    'client_id': os.getenv('CLIENT_ID'),
-    'client_secret': os.getenv('CLIENT_SECRET'),
-    'grant_type': 'authorization_code',
-    'code': code,
-    'redirect_uri': redirect_uri
+    'client_id': DiscordOauth.client_id,
+                'client_secret': DiscordOauth.client_secret,
+                'grant_type': 'authorization_code',
+                'code': code,
+                'redirect_uri': DiscordOauth.redirect_uri,
   }
   headers = {
     'Content-Type': 'application/x-www-form-urlencoded'
