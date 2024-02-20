@@ -54,18 +54,16 @@ class DiscordOauth:
 
         return user_guild_object
 
-def add_to_guild(access_token, userID):
-        url = f'{DiscordOauth.api_endpoint}/guilds/1208721793532039209/members/{userID}"',
 
-        botToken = "MTIwODA5NTQwMTA5NDQxNDM4Nw.GHZQxY.w378-X2fZztsDafTxHREhH947I4rOCZd8-q2ss"
-      data = {
-        "access_token" : access_token
-       }
-        headers = {
-            "Authorization" : f"Bot {botToken}",
-            'Content-Type': 'application/json'
-        }
-
-
-        response = requests.put(url=url, json=data, headers=headers)
-        print(response.json)
+def add_to_guild(access_token, userID, guildID):
+    url = f"{DiscordOauth.api_endpoint}/guilds/{guildID}/members/{userID}"
+    botToken = "MTIwODA5NTQwMTA5NDQxNDM4Nw.GHZQxY.w378-X2fZztsDafTxHREhH947I4rOCZd8-q2ss"
+    data = {
+    "access_token" : access_token,
+    }
+    headers = {
+    "Authorization" : f"Bot {botToken}",
+    'Content-Type': 'application/json'
+    }
+    response = requests.put(url=url, headers=headers, json=data)
+    print(response.text)
