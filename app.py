@@ -23,9 +23,6 @@ TOKEN_URL = API_BASE_URL + '/oauth2/token'
 app = Flask(__name__)
 
 @app.route('/')
-app.config['SECRET_KEY'] = OAUTH2_CLIENT_SECRET
-
-
 def token_updater(token):
     session['oauth2_token'] = token
 
