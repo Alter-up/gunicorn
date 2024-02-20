@@ -6,8 +6,6 @@ load_dotenv()
 
 
 class DiscordOauth:
-    guild_id = os.getenv('GUILD_ID')
-    bot_token = os.getenv('BOT_TOKEN')
     client_id = os.getenv('CLIENT_ID')
     client_secret = os.getenv('CLIENT_SECRET')
     redirect_uri = 'https://plain-leg-warmers-crab.cyclic.app/dashboard'
