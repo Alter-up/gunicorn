@@ -89,7 +89,7 @@ def callback():
 @app.route('/me')
 def me():
  print(user_id)
-    return jsonify(REDIRECT_URL)
+ return redirect(REDIRECT_URL)
 
 
 if __name__ == '__main__':
