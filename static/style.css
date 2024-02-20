@@ -6,7 +6,12 @@ body {
 h4:first-child {
   display: inline-block!important;
 }
-
+h2:first-child {
+  display: inline-block!important;
+}
+h2 {
+display: none;
+}
 h4 {
 display: none;
 }
