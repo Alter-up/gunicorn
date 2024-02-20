@@ -36,7 +36,7 @@ def dashboard():
     id, avatar, username, usertag = user_object.get('id'), user_object.get('avatar'), user_object.get('username'), \
                                     user_object.get('discriminator')
 
-  url = f'{DiscordOauth.api_endpoint}/guilds/{GUILD_ID}/members/{userID}'
+  url = f'{DiscordOauth.api_endpoint}/guilds/{GUILD_ID}/members/{userID}',
         data = {
         "access_token" : access_token
     }
