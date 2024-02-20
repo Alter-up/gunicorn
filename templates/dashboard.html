@@ -5,12 +5,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-9">
-                    <div class="panel panel-default col-md-offset-3" style="border-radius: 24px;">
-                        <div class="panel-heading main-color-bg" style="border-radius: 24px 24px 0px 0px">
+                    <div class="panel panel-default col-md-offset-3" style="border-radius: 24px; border: none;">
+                        <div class="panel-heading main-color-bg" style="padding: 15px; border-radius: 24px 24px 0px 0px; border: none;">
 {% for guild in render_guild %}
                                     <h4 style="font-size: 18px;">
                                        
-                                        {{ guild['name'] }}
+                                       {{ guild['name'] }} community rewards checking
 
                                     {% endfor %}
                            
@@ -29,15 +29,20 @@
     height: 30px;" src="{{ render_user_avatar }}" />
                 {{ render_username }}
 </h2>
- <h3 class="panel-title" style="    font-size: 14px;
+ <h3 class="panel-title" style="font-size: 14px;
     font-weight: 400;
     color: #000;">Connect your wallet to view your rewards</h3>
 <button type="button" class="btn btn-success pull-right connectButton" style="font-size: 20px;
-    
+    border-radius: 1.5rem;
+    border-color: #5765f2;
+    background-color: #5765f2;
+    margin-top: 20px;
+    padding-right: 30px;
+    padding-left: 30px;
     float: none!important;
     margin-top: 20px;
     padding-right: 30px;
-    padding-left: 30px;">Connect Wallet</button>
+    padding-left: 30px;">Check rewards</button>
                                     </h4>
                               
                             </div>
