@@ -53,11 +53,6 @@ def dashboard():
         'Content-Type': 'application/json'
     }
 
-    #This will contain the information
-    response = requests.get(url=url, headers=headers)
-
-    print(response.json())
-
     #Extract the id
     user_id = user_object.get('id')
 
