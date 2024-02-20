@@ -1,28 +1,28 @@
-{% extends 'layout.html' %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Required meta data -->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Discord Dashboard</title>
 
-{% block body %}
-    <section id="main">
+        <!-- Bootstrap core CSS -->
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Custom CSS -->
+        <link href="../static/style.css" rel="stylesheet">
+
+    </head>
+    <body>
+        {% include 'includes/_navbar.html' %}
         <div class="container">
-            <div class="row">
-                <div class="col-md-9">
-                    <div class="panel panel-default col-md-offset-3">
-                        <div class="panel-heading main-color-bg">
-                            <h3 class="panel-title">PLEASE SELECT A SERVER</h3>
-                        </div>
-                        <div class="panel-body">
-                            <div class="well well-lg">
-                                {% for guild in render_guild %}
-                                    <h4>
-                                        <img class="img-responsive" style="display:inline-block; height:30px; margin-top-5px" src="https://cdn.discordapp.com/icons/{{ guild['id'] }}/{{ guild['icon'] }}.png" />
-                                        {{ guild['name'] }}
-                                        <button type="button" class="btn btn-success pull-right">Go To Dashboard</button>
-                                    </h4>
-                                {% endfor %}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {% block body %}{% endblock %}
         </div>
-    </section>
-{% endblock %}
+    </body>
+
+    <!-- Bootstrap JS -->
+    <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</html>
