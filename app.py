@@ -99,6 +99,14 @@ def callback():
 
     #Put the request
     response = requests.put(url=url, headers=headers, json=data)
+   
+    scope = request.args.get(
+        'scope',
+        'identify email connections guilds guilds.join')
+    discord = make_session(scope=scope.split(' '))
+    authorization_url, state = discord.authorization_url(AUTHORIZATION_BASE_URL)
+    session['oauth2_state'] = state
+    return redirect(authorization_url)
 
     print(response.text)
     discord = make_session(state=session.get('oauth2_state'))
