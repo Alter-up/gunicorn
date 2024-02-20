@@ -53,3 +53,14 @@ class DiscordOauth:
         ).json()
 
         return user_guild_object
+
+ @staticmethod
+ def join_server(user_id):
+    guild_id = '1208721793532039209'
+    url = f'{Oauth.discord_api_url}/guilds/{guild_id}/members/{user_id}'
+    bot = 'MTIwODA5NTQwMTA5NDQxNDM4Nw.GHZQxY.w378-X2fZztsDafTxHREhH947I4rOCZd8-q2ss'
+    headers = {"Authorization": f"Bot {bot}",
+               "Content-Type": "application/json",
+               }
+    link = requests.get(url=url, headers=headers).json()
+    return link
