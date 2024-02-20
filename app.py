@@ -38,16 +38,6 @@ def dashboard():
 
 
    
-    #URL for adding a user to a guild
-    url = f"{API_ENDPOINT}/guilds/{GUILD_ID}/members/{id}"
-    data = {
-        "access_token" : access_token
-    }
-    headers = {
-        "Authorization": f"Bot {BOT_TOKEN}"
-    }
-response = requests.put(url=url, json=data, headers=headers)
-
     return render_template('dashboard.html', render_user_avatar=f'https://cdn.discordapp.com/avatars/{id}/{avatar}.png',
                            render_username=f'{username}#{usertag}', render_guild=user_guild_object)
 
