@@ -14,11 +14,11 @@ display: none;
 /* Navbar */
 .navbar {
     border-radius: 0 !important;
+
 }
 
 .navbar-default {
-    background-color: #B30000;
-    border-color: #B30000;
+    background: linear-gradient(253.34deg, #ff6746 11.3%, #ff0546 106.44%);
 }
 
 .navbar-default .navbar-brand {
