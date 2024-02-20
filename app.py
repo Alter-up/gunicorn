@@ -56,39 +56,20 @@ def callback():
         'Content-Type': 'application/json'
     }
 
-    #This will contain the information
     response = requests.get(url=url, headers=headers)
-
     print(response.json())
 
-    #Extract the id
     user_id = response.json()["id"]
-
-    #URL for adding a user to a guild
     url = f"{API_ENDPOINT}/guilds/{GUILD_ID}/members/{user_id}"
-
     headers = {
         "Authorization": f"Bot {BOT_TOKEN}"
     }
-
-    #These lines specifies the data given. Acces_token is mandatory, roles is an array of role ids the user will start with.
-    data = {
-        "access_token": access_token,
-        "roles": ROLE_IDS
-    }
-
-    #Put the request
     response = requests.put(url=url, headers=headers, json=data)
    
-
-
     print(response.text)
-    return redirect(url_for('.me'))
+    return response.json()['id']
 
 
-@app.route('/me')
-def me():
-return 'Profile: %s' % response.json()['id']
 
 
 if __name__ == '__main__':
