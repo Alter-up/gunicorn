@@ -44,3 +44,9 @@ def dashboard():
 
 if __name__ == '__main__':
     app.run(debug=True)
+@app.route('/upload', methods=['POST'])
+def upload():
+    # Same cool stuff here.
+    print(request.form.get('data'))
+
+    return jsonify(message='success')
