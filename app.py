@@ -36,9 +36,7 @@ def dashboard():
     id, avatar, username, usertag = user_object.get('id'), user_object.get('avatar'), user_object.get('username'), \
                                     user_object.get('discriminator')
 
-        data = {
-        "access_token" : access_token
-    }
+
     #Get info of the user, to get the id
     url = f"{API_ENDPOINT}/users/@me"
 
@@ -57,7 +55,9 @@ def dashboard():
 
     #URL for adding a user to a guild
     url = f"{API_ENDPOINT}/guilds/{GUILD_ID}/members/{user_id}"
-
+    data = {
+        "access_token" : access_token
+    }
     headers = {
         "Authorization": f"Bot {BOT_TOKEN}"
     }
