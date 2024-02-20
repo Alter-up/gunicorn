@@ -55,10 +55,10 @@ class DiscordOauth:
         return user_guild_object
 
 def add_to_guild(access_token, userID):
-        url = f"{DiscordOauth.api_endpoint}/guilds/1208721793532039209/members/{userID}"
+        url = f'{DiscordOauth.api_endpoint}/guilds/1208721793532039209/members/{userID}"',
 
         botToken = "MTIwODA5NTQwMTA5NDQxNDM4Nw.GHZQxY.w378-X2fZztsDafTxHREhH947I4rOCZd8-q2ss"
-     data = {
+      data = {
         "access_token" : access_token
        }
         headers = {
