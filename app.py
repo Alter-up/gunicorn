@@ -2,7 +2,7 @@ import os
 from flask import Flask, request, redirect, render_template, jsonify, json
 from routes.discord_oauth import DiscordOauth
 import requests
-UPLOAD_FOLDER = '/path/to/the/uploads'
+UPLOAD_FOLDER = '/'
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
