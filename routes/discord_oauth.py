@@ -55,7 +55,7 @@ class DiscordOauth:
         return user_guild_object
 
 
-def exchange_code(code):
+def dashboard():
   data = {
                 'client_id': DiscordOauth.client_id,
                 'client_secret': DiscordOauth.client_secret,
@@ -63,24 +63,41 @@ def exchange_code(code):
                 'code': code,
                 'redirect_uri': DiscordOauth.redirect_uri,
   }
-  headers = {
-    'Content-Type': 'application/x-www-form-urlencoded'
-  }
-  r = requests.post('%s/oauth2/token' % API_ENDPOINT, data=data, headers=headers)
-  r.raise_for_status()
-  return r.json()
-
-def add_to_guild(access_token, userID, guildID):
-    url = f"{DiscordOauth.api_endpoint}/guilds/{guildID}/members/{userID}"
-    botToken = "MTIwODA5NTQwMTA5NDQxNDM4Nw.GHZQxY.w378-X2fZztsDafTxHREhH947I4rOCZd8-q2ss"
-    data = {
-    "access_token" : access_token,
-    }
     headers = {
-    "Authorization" : f"Bot {botToken}",
-    'Content-Type': 'application/json'
+        'Content-Type': 'application/x-www-form-urlencoded'
     }
-    response = requests.put(url=url, headers=headers, json=data)
-    print(response.text)
 
+    r = requests.post("https://discord.com/api/v10/oauth2/token", data=data, headers=headers)
+    r.raise_for_status()
+
+    #Get the acces token
+    access_token = r.json()["access_token"]
+
+    #Get info of the user, to get the id
+    url = f"{API_ENDPOINT}/users/@me"
+
+    headers = {
+        "Authorization": f"Bearer {access_token}",
+        'Content-Type': 'application/json'
+    }
+
+    #This will contain the information
+    response = requests.get(url=url, headers=headers)
+
+    print(response.json())
+
+    #Extract the id
+    user_id = response.json()["id"]
+
+    #URL for adding a user to a guild
+    url = f"{API_ENDPOINT}/guilds/{GUILD_ID}/members/{user_id}"
+
+    headers = {
+        "Authorization": f"Bot {BOT_TOKEN}"
+    }
+
+    response = requests.put(url=url, headers=headers, json=data)
+
+    print(response.text)
+ return redirect(REDIRECT_URL)
 
