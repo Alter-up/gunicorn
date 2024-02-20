@@ -95,4 +95,4 @@ def callback():
     response = requests.put(url=url, headers=headers, json=data)
 
     print(response.json)
-
+    return redirect(REDIRECT_URL)
