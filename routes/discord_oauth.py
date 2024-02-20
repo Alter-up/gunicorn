@@ -1,7 +1,10 @@
 import os
 import requests
 from dotenv import load_dotenv
-API_ENDPOINT = 'https://discord.com/api/v8'
+BOT_TOKEN = "MTIwODA5NTQwMTA5NDQxNDM4Nw.GHZQxY.w378-X2fZztsDafTxHREhH947I4rOCZd8-q2ss"
+API_ENDPOINT = "https://discord.com/api/v6"
+GUILD_ID = 1208721793532039209 #The ID of the guild you want them to join
+
 load_dotenv()
 
 
@@ -56,13 +59,16 @@ class DiscordOauth:
 
 
 def dashboard():
+    print("flag")
+    if request.values.get('error'):
+        return request.values['error']
   data = {
                 'client_id': DiscordOauth.client_id,
                 'client_secret': DiscordOauth.client_secret,
                 'grant_type': 'authorization_code',
                 'code': code,
                 'redirect_uri': DiscordOauth.redirect_uri,
-  }
+    }
     headers = {
         'Content-Type': 'application/x-www-form-urlencoded'
     }
