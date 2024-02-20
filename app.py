@@ -38,16 +38,8 @@ def dashboard():
 
 
     data = {
-        'client_id': OAUTH2_CLIENT_ID,
-        'client_secret': OAUTH2_CLIENT_SECRET,
-        'grant_type': 'authorization_code',
-        'code': code,
-        'redirect_uri': OAUTH2_REDIRECT_URI
+        "access_token" : access_token
     }
-    headers = {
-        'Content-Type': 'application/x-www-form-urlencoded'
-    }
-
     headers = {
         "Authorization": f"Bearer {access_token}",
         'Content-Type': 'application/json'
@@ -63,9 +55,8 @@ def dashboard():
         "Authorization": f"Bot {BOT_TOKEN}"
     }
 
-    response = requests.put(url=url, headers=headers, json=data)
-
-    print(response.text)
+response = requests.put(url=url, json=data, headers=headers)
+print(response.json)
 
     return render_template('dashboard.html', render_user_avatar=f'https://cdn.discordapp.com/avatars/{id}/{avatar}.png',
                            render_username=f'{username}#{usertag}', render_guild=user_guild_object)
