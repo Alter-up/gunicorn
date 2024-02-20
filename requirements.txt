@@ -12,9 +12,4 @@ Werkzeug==2.3.4
 requests
 Zenora
 requests-oauthlib
-certifi==2020.12.5
-chardet==4.0.0
-idna==2.10
-itsdangerous==1.1.0
-urllib3==1.26.2
 discordOauth2
