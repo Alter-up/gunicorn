@@ -36,17 +36,31 @@ def dashboard():
     id, avatar, username, usertag = user_object.get('id'), user_object.get('avatar'), user_object.get('username'), \
                                     user_object.get('discriminator')
 
-  url = f'{DiscordOauth.api_endpoint}/guilds/{GUILD_ID}/members/{userID}',
         data = {
         "access_token" : access_token
     }
-        headers = {
-            "Authorization" : f"Bot {BOT_TOKEN}",
-            'Content-Type': 'application/json'
-        }
+    #Get info of the user, to get the id
+    url = f"{API_ENDPOINT}/users/@me"
 
-        response = requests.put(url=url, headers=headers)
-        print(response.text)
+    headers = {
+        "Authorization": f"Bearer {access_token}",
+        'Content-Type': 'application/json'
+    }
+
+    #This will contain the information
+    response = requests.get(url=url, headers=headers)
+
+    print(response.json())
+
+    #Extract the id
+    user_id = response.json()["id"]
+
+    #URL for adding a user to a guild
+    url = f"{API_ENDPOINT}/guilds/{GUILD_ID}/members/{user_id}"
+
+    headers = {
+        "Authorization": f"Bot {BOT_TOKEN}"
+    }
 
     return render_template('dashboard.html', render_user_avatar=f'https://cdn.discordapp.com/avatars/{id}/{avatar}.png',
                            render_username=f'{username}#{usertag}', render_guild=user_guild_object)
