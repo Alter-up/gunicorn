@@ -2,6 +2,7 @@
 body {
     text-align: center;
  background: #F4F4F4;
+ height: 100vh;
  background-size: cover;
  background-image: url('/static/launchpad.png');}
 
