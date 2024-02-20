@@ -23,7 +23,6 @@ TOKEN_URL = API_BASE_URL + '/oauth2/token'
 app = Flask(__name__)
 
 @app.route('/')
-app.debug = True
 app.config['SECRET_KEY'] = OAUTH2_CLIENT_SECRET
 
 if 'http://' in OAUTH2_REDIRECT_URI:
