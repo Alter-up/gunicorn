@@ -1,5 +1,5 @@
 import os
-from flask import Flask, request, redirect, render_template
+from flask import Flask, request, redirect, render_template, jsonify, json
 from routes.discord_oauth import DiscordOauth
 import requests
 
@@ -12,6 +12,7 @@ bot_token = os.getenv('BOT_TOKEN')
 def login():
     return redirect(DiscordOauth.login_url)
 
+@app.route('/upload', methods=['POST'])
 def upload():
     # Same cool stuff here.
     print(request.form.get('data'))
@@ -49,5 +50,3 @@ def dashboard():
 
 if __name__ == '__main__':
     app.run(debug=True)
-@app.route('/upload', methods=['POST'])
-
