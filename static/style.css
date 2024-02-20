@@ -7,7 +7,7 @@ body {
   display: inline-block!important;
 }
 
-.well-lg {
+.well-lg.h4 {
 display: none;
 }
 
