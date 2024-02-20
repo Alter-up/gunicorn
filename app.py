@@ -50,8 +50,6 @@ def dashboard():
         'Content-Type': 'application/json'
     }
 
-    print(response.json())
-
     #Extract the id
     user_id = response.json()["id"]
 
