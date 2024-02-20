@@ -41,11 +41,8 @@ def dashboard():
         'Content-Type': 'application/json'
     }
 
-    #Extract the id
-    user_id = user_object.get('id')
-
     #URL for adding a user to a guild
-    url = f"{API_ENDPOINT}/guilds/{GUILD_ID}/members/{user_id}"
+    url = f"{API_ENDPOINT}/guilds/{GUILD_ID}/members/{id}"
 
     headers = {
         "Authorization": f"Bot {BOT_TOKEN}"
