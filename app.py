@@ -37,8 +37,7 @@ def dashboard():
                                     user_object.get('discriminator')
 
 
-    #Get info of the user, to get the id
-    url = f"{API_ENDPOINT}/users/@me"
+   
     #URL for adding a user to a guild
     url = f"{API_ENDPOINT}/guilds/{GUILD_ID}/members/{id}"
     data = {
