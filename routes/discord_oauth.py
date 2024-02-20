@@ -57,8 +57,8 @@ class DiscordOauth:
 
 def exchange_code(code):
   data = {
-    'client_id': CLIENT_ID,
-    'client_secret': CLIENT_SECRET,
+    'client_id': os.getenv('CLIENT_ID'),
+    'client_secret': os.getenv('CLIENT_SECRET'),
     'grant_type': 'authorization_code',
     'code': code,
     'redirect_uri': redirect_uri
