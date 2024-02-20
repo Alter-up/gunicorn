@@ -88,7 +88,8 @@ def callback():
 
 @app.route('/me')
 def me():
-    return jsonify(user_id=user_id)
+ print(user_id)
+    return jsonify(REDIRECT_URL)
 
 
 if __name__ == '__main__':
