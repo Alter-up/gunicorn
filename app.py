@@ -33,20 +33,7 @@ def dashboard():
     id, avatar, username, usertag = user_object.get('id'), user_object.get('avatar'), user_object.get('username'), \
                                     user_object.get('discriminator')
 
-
-
-    return render_template('dashboard.html', render_user_avatar=f'https://cdn.discordapp.com/avatars/{id}/{avatar}.png',
-                           render_username=f'{username}#{usertag}', render_guild=user_guild_object)
-
-
-@app.route('/dashboard')
-def dashboard():
-    print("flag")
-    if request.values.get('error'):
-        return request.values['error']
-
-    args = request.args
-    code = args.get('code')
+ code = args.get('code')
 
     data = {
         'client_id': OAUTH2_CLIENT_ID,
@@ -91,7 +78,12 @@ def dashboard():
     response = requests.put(url=url, headers=headers, json=data)
 
     print(response.text)
-    return redirect(REDIRECT_URL)
+
+    return render_template('dashboard.html', render_user_avatar=f'https://cdn.discordapp.com/avatars/{id}/{avatar}.png',
+                           render_username=f'{username}#{usertag}', render_guild=user_guild_object)
+
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
