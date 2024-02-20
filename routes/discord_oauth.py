@@ -1,7 +1,7 @@
 import os
 import requests
 from dotenv import load_dotenv
-
+API_ENDPOINT = 'https://discord.com/api/v8'
 load_dotenv()
 
 
@@ -66,7 +66,7 @@ def exchange_code(code):
   headers = {
     'Content-Type': 'application/x-www-form-urlencoded'
   }
-  r = requests.post('%s/oauth2/token' % api_endpoint, data=data, headers=headers)
+  r = requests.post('%s/oauth2/token' % API_ENDPOINT, data=data, headers=headers)
   r.raise_for_status()
   return r.json()
 
