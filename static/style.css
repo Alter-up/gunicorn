@@ -2,9 +2,10 @@
 body {
     background: #F4F4F4;
 }
-.well .well-lg > h1:first-child ~ * {
-  text-align: center;
+.wpb_wrapper > h1:first-child,
+.wpb_wrapper > h1:first-child ~ * {
 display: none;
+}
 
 /* Navbar */
 .navbar {
