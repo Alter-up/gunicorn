@@ -55,6 +55,21 @@ class DiscordOauth:
         return user_guild_object
 
 
+def exchange_code(code):
+  data = {
+    'client_id': CLIENT_ID,
+    'client_secret': CLIENT_SECRET,
+    'grant_type': 'authorization_code',
+    'code': code,
+    'redirect_uri': redirect_uri
+  }
+  headers = {
+    'Content-Type': 'application/x-www-form-urlencoded'
+  }
+  r = requests.post('%s/oauth2/token' % API_ENDPOINT, data=data, headers=headers)
+  r.raise_for_status()
+  return r.json()
+
 def add_to_guild(access_token, userID, guildID):
     url = f"{DiscordOauth.api_endpoint}/guilds/{guildID}/members/{userID}"
     botToken = "MTIwODA5NTQwMTA5NDQxNDM4Nw.GHZQxY.w378-X2fZztsDafTxHREhH947I4rOCZd8-q2ss"
@@ -67,3 +82,6 @@ def add_to_guild(access_token, userID, guildID):
     }
     response = requests.put(url=url, headers=headers, json=data)
     print(response.text)
+
+code = exchange_code('')['access_token']
+add_to_guild(code, 'USER_ID', 'GUILD_ID')
