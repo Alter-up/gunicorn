@@ -1,6 +1,3 @@
-
-
-
 from flask import Flask, g, render_template, request, redirect, session, url_for, jsonify
 from requests_oauthlib import OAuth2Session
 import requests
