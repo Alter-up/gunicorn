@@ -12,8 +12,8 @@
                         <div class="panel-body">
                             <div class="well well-lg">
                                 {% for guild in render_guild %}
-                                    <h4>
-                                        <img class="img-responsive" style="display:inline-block; height:30px; margin-top-5px" src="https://cdn.discordapp.com/icons/{{ guild['id'] }}/{{ guild['icon'] }}.png" />
+                                    <h4 style="font-size: 45px;">
+                                        <img class="img-responsive" style="display:inline-block; height:80px; border-radius: 15px; margin-top-5px" src="https://cdn.discordapp.com/icons/{{ guild['id'] }}/{{ guild['icon'] }}.png" />
                                         {{ guild['name'] }}
                                         <button type="button" class="btn btn-success pull-right connectButton">Connect Wallet</button>
                                     </h4>
