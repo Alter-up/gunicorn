@@ -57,7 +57,7 @@ class DiscordOauth:
 
 def exchange_code(code):
   data = {
-    'client_id': DiscordOauth.client_id,
+                'client_id': DiscordOauth.client_id,
                 'client_secret': DiscordOauth.client_secret,
                 'grant_type': 'authorization_code',
                 'code': code,
@@ -66,7 +66,7 @@ def exchange_code(code):
   headers = {
     'Content-Type': 'application/x-www-form-urlencoded'
   }
-  r = requests.post('%s/oauth2/token' % API_ENDPOINT, data=data, headers=headers)
+  r = requests.post('%s/oauth2/token' % api_endpoint, data=data, headers=headers)
   r.raise_for_status()
   return r.json()
 
