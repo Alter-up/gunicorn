@@ -4,9 +4,9 @@ import requests
 
 app = Flask(__name__)
 
+guild_id = os.getenv('GUILD_ID')
+bot_token = os.getenv('BOT_TOKEN')
 
-# Route for index page
-# Provides user login capabilities
 @app.route('/login', methods=['GET'])
 def login():
     return redirect(DiscordOauth.login_url)
