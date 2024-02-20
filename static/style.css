@@ -3,8 +3,8 @@ body {
     background: #F4F4F4;
 }
 
-.well-lg > first-child {
-  background-color: yellow;
+.well-lg::first-child {
+  display: inline-block!important;
 }
 
 .well-lg {
