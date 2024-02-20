@@ -1,15 +1,1 @@
-{
-   "name": "gunicorn",
- "version": "1.0.0",
- "description": "",
-"repository": {
-"type": "git",
-"url": "git+https://github.com/Alter-up/gunicorn.git"
-},
-"author": "",
-"license": "ISC",
-    "bugs": {
-       "url": "https://github.com/Alter-up/gunicorn/issues"
-   },
-   "homepage": "https://github.com/Alter-up/gunicorn#readme"
-}
+
