@@ -1,8 +1,7 @@
 /* Body */
 body {
  background: #F4F4F4;
- background-image: url({{ url_for ('static', filename = 'launchpad.png') }});
-}
+ background-image: url('/static/launchpad.png');}
 
 h4:first-child {
   display: inline-block!important;
