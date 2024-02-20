@@ -7,7 +7,13 @@
                 <div class="col-md-9">
                     <div class="panel panel-default col-md-offset-3" style="border-radius: 24px;">
                         <div class="panel-heading main-color-bg" style="border-radius: 24px 24px 0px 0px">
-                            <h3 class="panel-title">Connect your wallet to view your rewards</h3>
+{% for guild in render_guild %}
+                                    <h4 style="font-size: 18px;">
+                                       
+                                        {{ guild['name'] }}
+
+                                    {% endfor %}
+                           
                         </div>
                         <div class="panel-body">
                             <div class="well well-lg">
