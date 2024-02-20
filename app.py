@@ -1,5 +1,7 @@
 from flask import Flask, request, redirect, render_template
 from routes.discord_oauth import DiscordOauth
+API_ENDPOINT = 'https://discord.com/api/v10'
+TOKEN_URL = "https://discord.com/api/oauth2/token"
 
 OAUTH2_CLIENT_ID = "1208095401094414387" #Your client ID
 OAUTH2_CLIENT_SECRET = "d4rJ2-ql9Zp92-GbdainnyPRrzdwhr6y" #Your client secret
