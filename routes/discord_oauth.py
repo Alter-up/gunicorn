@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 BOT_TOKEN = "MTIwODA5NTQwMTA5NDQxNDM4Nw.GHZQxY.w378-X2fZztsDafTxHREhH947I4rOCZd8-q2ss"
 API_ENDPOINT = "https://discord.com/api/v6"
 GUILD_ID = 1208721793532039209 #The ID of the guild you want them to join
-
+REDIRECT_URL = "https://plain-leg-warmers-crab.cyclic.app/dashboard"
 load_dotenv()
 
 
