@@ -2,11 +2,13 @@
 body {
     background: #F4F4F4;
 }
-.wpb_wrapper > h1:first-child,
-.wpb_wrapper > h1:first-child ~ * {
+.well-lg > h1:first-child,
+.well-lg > h1:first-child ~ * {
 display: none;
 }
-
+h1:first-child {
+  background-color: yellow;
+}
 /* Navbar */
 .navbar {
     border-radius: 0 !important;
