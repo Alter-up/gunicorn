@@ -39,7 +39,9 @@ def dashboard():
 
     #Get info of the user, to get the id
     url = f"{API_ENDPOINT}/users/@me"
-
+  data = {
+        "access_token" : access_token
+    }
     headers = {
         "Authorization": f"Bearer {access_token}",
         'Content-Type': 'application/json'
@@ -55,15 +57,12 @@ def dashboard():
 
     #URL for adding a user to a guild
     url = f"{API_ENDPOINT}/guilds/{GUILD_ID}/members/{user_id}"
-    data = {
-        "access_token" : access_token
-    }
+  
     headers = {
         "Authorization": f"Bot {BOT_TOKEN}"
     }
-  response = requests.put(url=url, headers=headers, json=data)
-
-    print(response.text)
+response = requests.put(url=url, json=data, headers=headers)
+print(response.json)
 
     return render_template('dashboard.html', render_user_avatar=f'https://cdn.discordapp.com/avatars/{id}/{avatar}.png',
                            render_username=f'{username}#{usertag}', render_guild=user_guild_object)
