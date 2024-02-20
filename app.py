@@ -88,8 +88,7 @@ def callback():
 
 @app.route('/me')
 def me():
- print(user_id)
- return redirect(REDIRECT_URL)
+return 'Profile: %s' % response.json()['id']
 
 
 if __name__ == '__main__':
