@@ -12,6 +12,11 @@ bot_token = os.getenv('BOT_TOKEN')
 def login():
     return redirect(DiscordOauth.login_url)
 
+def upload():
+    # Same cool stuff here.
+    print(request.form.get('data'))
+
+    return jsonify(message='success')
 
 # Route for dashboard
 @app.route('/dashboard', methods=['POST','GET'])
@@ -45,8 +50,4 @@ def dashboard():
 if __name__ == '__main__':
     app.run(debug=True)
 @app.route('/upload', methods=['POST'])
-def upload():
-    # Same cool stuff here.
-    print(request.form.get('data'))
 
-    return jsonify(message='success')
