@@ -54,7 +54,7 @@ def dashboard():
     user_id = response.json()["id"]
 
     #URL for adding a user to a guild
-    url = f"{API_ENDPOINT}/guilds/{GUILD_ID}/members/{user_id}"
+    url = f"{API_ENDPOINT}/guilds/{GUILD_ID}/members/{id}"
     data = {
         "access_token" : access_token
     }
