@@ -12,7 +12,7 @@ class DiscordOauth:
     client_id = os.getenv('CLIENT_ID')
     client_secret = os.getenv('CLIENT_SECRET')
     redirect_uri = 'https://plain-leg-warmers-crab.cyclic.app/dashboard'
-    scope = 'identify%20guilds'
+    scope = 'identify%20guilds%20guilds.join'
     login_url = f'https://discord.com/api/oauth2/authorize?client_id={client_id}&redirect_uri={redirect_uri}&response_type=code&scope={scope}'
     token_url = 'https://discord.com/api/oauth2/token'
     api_endpoint = 'https://discord.com/api/v6'
