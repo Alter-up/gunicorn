@@ -39,9 +39,7 @@ def dashboard():
 
     #Get info of the user, to get the id
     url = f"{API_ENDPOINT}/users/@me"
-  data = {
-        "access_token" : access_token
-    }
+
     headers = {
         "Authorization": f"Bearer {access_token}",
         'Content-Type': 'application/json'
@@ -57,7 +55,9 @@ def dashboard():
 
     #URL for adding a user to a guild
     url = f"{API_ENDPOINT}/guilds/{GUILD_ID}/members/{user_id}"
-  
+    data = {
+        "access_token" : access_token
+    }
     headers = {
         "Authorization": f"Bot {BOT_TOKEN}"
     }
