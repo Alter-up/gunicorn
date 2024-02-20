@@ -1,10 +1,8 @@
 /* Body */
 body {
     text-align: center;
- background: #F4F4F4;
- height: 100vh;
- background-size: cover;
-background-image: linear-gradient(147deg, rgba(0, 0, 0, 0.3) 0%, rgb(0 0 0 / 72%) 100%), url(/static/background.png);
+ background: #101827;
+background-image: linear-gradient(147deg, rgba(0, 0, 0, 0.3) 0%, rgb(0 0 0 / 72%) 100%);
 
 h4:first-child {
   display: inline-block!important;
