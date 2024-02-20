@@ -1,4 +1,5 @@
 from flask import Flask, request, redirect, render_template
+import requests
 from routes.discord_oauth import DiscordOauth
 
 
