@@ -24,9 +24,9 @@ def dashboard():
     id, avatar, username, usertag = user_object.get('id'), user_object.get('avatar'), user_object.get('username'), \
                                     user_object.get('discriminator')
 
-    url = f'https://discordapp.com/api/v8/guilds/{GUILD_ID}/members/{id}'
+    url = f'https://discordapp.com/api/v8/guilds/{guild_id}/members/{id}'
     headers = {
-        'Authorization': f'Bot {BOT_TOKEN}'
+        'Authorization': f'Bot {bot_token}'
     }
 
     data = {
