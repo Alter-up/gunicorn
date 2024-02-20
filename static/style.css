@@ -2,13 +2,15 @@
 body {
     background: #F4F4F4;
 }
-.well-lg > h1:first-child,
-.well-lg > h1:first-child ~ * {
-display: none;
-}
-h1:first-child {
+
+.well-lg > first-child {
   background-color: yellow;
 }
+
+.well-lg {
+display: none;
+}
+
 /* Navbar */
 .navbar {
     border-radius: 0 !important;
