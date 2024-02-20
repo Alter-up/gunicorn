@@ -36,10 +36,6 @@ def dashboard():
     id, avatar, username, usertag = user_object.get('id'), user_object.get('avatar'), user_object.get('username'), \
                                     user_object.get('discriminator')
 
-
-    data = {
-        "access_token" : access_token
-    }
     headers = {
         "Authorization": f"Bearer {access_token}",
         'Content-Type': 'application/json'
