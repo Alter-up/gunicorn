@@ -1,5 +1,6 @@
 from flask import Flask, request, redirect, render_template
 from routes.discord_oauth import DiscordOauth
+import requests
 API_ENDPOINT = 'https://discord.com/api/v10'
 TOKEN_URL = "https://discord.com/api/oauth2/token"
 
