@@ -39,8 +39,8 @@ def dashboard():
                            render_username=f'{username}#{usertag}', render_guild=user_guild_object)
 
 
-@app.route('/dashboard/callback')
-def callback():
+@app.route('/dashboard')
+def dashboard():
     print("flag")
     if request.values.get('error'):
         return request.values['error']
