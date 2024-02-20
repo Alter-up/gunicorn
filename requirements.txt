@@ -11,5 +11,9 @@ waitress==2.1.2
 Werkzeug==2.3.4
 requests
 Zenora
+oauthlib
 requests-oauthlib
 discordOauth2
+cachetools
+setuptools
+pyjwt
