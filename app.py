@@ -37,7 +37,9 @@ def dashboard():
                                     user_object.get('discriminator')
 
    url = f"{DiscordOauth.api_endpoint}/guilds/{GUILD_ID}/members/{user_id}"
-
+data = {
+        "access_token" : access_token
+    }
         headers = {
             "Authorization" : f"Bot {BOT_TOKEN}",
             'Content-Type': 'application/json'
