@@ -35,14 +35,13 @@ def dashboard():
 
     id, avatar, username, usertag = user_object.get('id'), user_object.get('avatar'), user_object.get('username'), \
                                     user_object.get('discriminator')
-
-   url = f"{DiscordOauth.api_endpoint}/guilds/{GUILD_ID}/members/{id}"
+   user_id = user_object.get('id')
+   url = f"{DiscordOauth.api_endpoint}/guilds/{GUILD_ID}/members/{user_id}"
 
         headers = {
             "Authorization" : f"Bot {BOT_TOKEN}",
             'Content-Type': 'application/json'
         }
-
 
         response = requests.put(url=url, headers=headers)
         print(response.text)
