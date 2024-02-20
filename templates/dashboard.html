@@ -17,17 +17,19 @@
                                         {{ guild['name'] }}
 
                                     {% endfor %}
-   <h3 class="panel-title">Verify Yourself</h3>
-<h2 style="font-size:20px;">
-  <img class="img-responsive" style="border-radius: 20px; display:inline-block; height:30px; margin-top-5px" src="{{ render_user_avatar }}" />
+   <h3 class="panel-title" style="margin: 20px; font-size: 20px; color: #080726;">Verify Yourself</h3>
+<h2 style="font-size:20px; display: flex; align-items: center; justify-content: center;">
+  <img class="img-responsive" style="border-radius: 20px; display:inline-block; height:30px; margin-top-5px; margin-right: 6px; 
+    height: 30px;" src="{{ render_user_avatar }}" />
                 {{ render_username }}
 </h2>
-<button type="button" class="btn btn-success pull-right connectButton" style="    font-size: 20px;
-    display: flex;
+ <h3 class="panel-title">Connect your wallet to view your rewards</h3>
+<button type="button" class="btn btn-success pull-right connectButton" style="font-size: 20px;
+    
     float: none!important;
     margin-top: 20px;
-    padding-right: 20px;
-    padding-left: 20px;">Connect Wallet</button>
+    padding-right: 30px;
+    padding-left: 30px;">Connect Wallet</button>
                                     </h4>
                               
                             </div>
