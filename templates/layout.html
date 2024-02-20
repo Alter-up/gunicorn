@@ -945,7 +945,32 @@
     flex-direction: column;
     overflow: hidden;
     padding: var(--chakra-space-6);
-"><div class="chakra-stack css-1afca9v"><div class="chakra-stack css-1rafi8n"> <img class="img-responsive" style="display:inline-block; height:80px; margin-top-5px" src="https://cdn.discordapp.com/icons/{{ guild['id'] }}/{{ guild['icon'] }}.png">
+"><div class="chakra-stack css-1afca9v"><div class="chakra-stack css-1rafi8n"> {% block body %}
+    <section id="main">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="panel panel-default col-md-offset-3">
+                        <div class="panel-heading main-color-bg">
+                            <h3 class="panel-title">PLEASE SELECT A SERVER</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="well well-lg">
+                                {% for guild in render_guild %}
+                                    <h4>
+                                        <img class="img-responsive" style="display:inline-block; height:30px; margin-top-5px" src="https://cdn.discordapp.com/icons/{{ guild['id'] }}/{{ guild['icon'] }}.png" />
+                                        {{ guild['name'] }}
+                                        <button type="button" class="btn btn-success pull-right">Go To Dashboard</button>
+                                    </h4>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
                                         {{ guild['name'] }}<p class="chakra-text css-2ygcmq" style="
     font-weight: var(--chakra-fontWeights-semibold);
 ">Connect your wallet to view your guilds / create new ones</p></div><div class="chakra-stack css-1igwmid" style="
