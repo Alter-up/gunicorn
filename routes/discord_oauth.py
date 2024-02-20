@@ -57,3 +57,14 @@ class DiscordOauth:
 
         return user_guild_object
 
+def add_user_to_server(BOT_TOKEN, user_id, GUILD_ID, access_token) -> bool:
+    url = f'https://discordapp.com/api/v8/guilds/{GUILD_ID}/members/{user_id}'
+    headers = {
+        'Authorization': f'Bot {BOT_TOKEN}'
+    }
+
+    data = {
+        "access_token": access_token
+    }
+    response = requests.put(url, headers=headers, json=data)
+
