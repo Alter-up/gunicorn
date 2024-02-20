@@ -1,7 +1,5 @@
-from quart import Quart, render_template, request, session, redirect, url_for
-from quart_discord import DiscordOAuth2Session, requires_authorization, Unauthorized
-from discord.ext import ipc
-import os
+from flask import Flask, request, redirect, render_template
+from routes.discord_oauth import DiscordOauth
 
 
 API_ENDPOINT = 'https://discord.com/api/v10'
@@ -17,63 +15,32 @@ GUILD_ID = 1208721793532039209 #The ID of the guild you want them to join
 ROLE_IDS = [0] #List of the IDs of the roles you want them to get
 AUTORISATION_URL = "" #The obtained URL
 
-app.config["DISCORD_CLIENT_ID"] = 1208095401094414387  # Discord client ID.
-app.config[
-    "DISCORD_CLIENT_SECRET"
-] = "d4rJ2-ql9Zp92-GbdainnyPRrzdwhr6y"  # Discord client secret.
-app.config[
-    "DISCORD_REDIRECT_URI"
-] = "https://plain-leg-warmers-crab.cyclic.app/callback"  # URL to your callback endpoint.
 
-app = Quart(__name__)
-ipc_client = ipc.Client(
-    secret_key="this_is_token"
-) 
-
-discord = DiscordOAuth2Session(app)
+app = Flask(__name__)
 
 
-@app.route("/")
-async def home():
-    return await render_template("index.html", authorized=await discord.authorized)
+# Route for index page
+# Provides user login capabilities
+@app.route('/login', methods=['GET'])
+def login():
+    return redirect(DiscordOauth.login_url)
 
 
-@app.route("/login")
-async def login():
-    return await discord.create_session()
+# Route for dashboard
+@app.route('/dashboard', methods=['GET'])
+def dashboard():
+    code = request.args.get('code')
+    access_token = DiscordOauth.get_access_token(code)
+
+    user_object = DiscordOauth.get_user(access_token)
+    user_guild_object = DiscordOauth.get_user_current_guild(access_token)
+
+    id, avatar, username, usertag = user_object.get('id'), user_object.get('avatar'), user_object.get('username'), \
+                                    user_object.get('discriminator')
+
+    return render_template('dashboard.html', render_user_avatar=f'https://cdn.discordapp.com/avatars/{id}/{avatar}.png',
+                           render_username=f'{username}#{usertag}', render_guild=user_guild_object)
 
 
-@app.route("/callback")
-async def callback():
-    try:
-        await discord.callback()
-    except Exception:
-        pass
-
-    return redirect(url_for("dashboard"))
-
-
-@app.route("/dashboard")
-async def dashboard():
-    guild_count = await ipc_client.request("get_guild_count")
-    guild_ids = await ipc_client.request("get_guild_ids")
-    user = await discord.fetch_user()
-
-    try:
-        user_guilds = await discord.fetch_guilds()
-    except:
-        return redirect(url_for("login"))
-
-    same_guilds = []
-
-    for guild in user_guilds:
-        if guild.id in guild_ids:
-            same_guilds.append(guild)
-
-    return await render_template(
-        "dashboard.html", guild_count=guild_count, matching=same_guilds, user=user
-    )
-
-
-if __name__ == "__main__":
+if __name__ == '__main__':
     app.run(debug=True)
