@@ -16,3 +16,4 @@ requests-oauthlib
 cachetools
 setuptools
 pyjwt
+Flask-Discord
