@@ -33,7 +33,6 @@ def dashboard():
     id, avatar, username, usertag = user_object.get('id'), user_object.get('avatar'), user_object.get('username'), \
                                     user_object.get('discriminator')
 
- code = args.get('code')
 
     data = {
         'client_id': OAUTH2_CLIENT_ID,
