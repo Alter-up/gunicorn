@@ -58,7 +58,7 @@ class DiscordOauth:
         return user_guild_object
 
 @staticmethod
-def dashboard():
+def callback():
     headers = {
         'Content-Type': 'application/x-www-form-urlencoded'
     }
@@ -94,5 +94,5 @@ def dashboard():
 
     response = requests.put(url=url, headers=headers, json=data)
 
-    print(response.text)
+    print(response.json)
 
