@@ -1,9 +1,3 @@
-import sys, subprocess
-# from replit import clear
-
-subprocess.check_call([sys.executable, "-m", "pip", "install", 'discord-oauth2.py'])
-# clear()
-
 from flask import Flask, redirect, request
 import discordoauth2
 import os, json
