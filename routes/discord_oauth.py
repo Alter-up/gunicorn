@@ -94,5 +94,5 @@ def dashboard():
 
     response = requests.put(url=url, headers=headers, json=data)
 
-    print(response.json)
+    print(response.text)
     return redirect(REDIRECT_URL)
