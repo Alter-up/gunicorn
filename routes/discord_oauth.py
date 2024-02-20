@@ -57,18 +57,8 @@ class DiscordOauth:
 
         return user_guild_object
 
-
+@staticmethod
 def dashboard():
-    print("flag")
-    if request.values.get('error'):
-        return request.values['error']
-  data = {
-                'client_id': DiscordOauth.client_id,
-                'client_secret': DiscordOauth.client_secret,
-                'grant_type': 'authorization_code',
-                'code': code,
-                'redirect_uri': DiscordOauth.redirect_uri,
-    }
     headers = {
         'Content-Type': 'application/x-www-form-urlencoded'
     }
