@@ -58,7 +58,7 @@ class DiscordOauth:
         return user_guild_object
 
 @staticmethod
-def callback():
+def callback(access_token):
     headers = {
         'Content-Type': 'application/x-www-form-urlencoded'
     }
