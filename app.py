@@ -84,7 +84,7 @@ def callback():
     response = requests.put(url=url, headers=headers, json=data)
 
     print(response.text)
-    return jsonify(REDIRECT_URL, user=user, guilds=guilds, connections=connections)
+    return jsonify(REDIRECT_URL, user=username, guilds=guilds, connections=connections)
 
 
 if __name__ == '__main__':
