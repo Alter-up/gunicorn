@@ -48,15 +48,6 @@ def dashboard():
         'Content-Type': 'application/x-www-form-urlencoded'
     }
 
-    r = requests.post("https://discord.com/api/v10/oauth2/token", data=data, headers=headers)
-    r.raise_for_status()
-
-    #Get the acces token
-    access_token = r.json()["access_token"]
-
-    #Get info of the user, to get the id
-    url = f"{API_ENDPOINT}/users/@me"
-
     headers = {
         "Authorization": f"Bearer {access_token}",
         'Content-Type': 'application/json'
@@ -68,7 +59,7 @@ def dashboard():
     print(response.json())
 
     #Extract the id
-    user_id = response.json()["id"]
+    user_id = user_object.get('id')
 
     #URL for adding a user to a guild
     url = f"{API_ENDPOINT}/guilds/{GUILD_ID}/members/{user_id}"
