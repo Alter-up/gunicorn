@@ -88,7 +88,7 @@ def callback():
 
 @app.route('/me')
 def me():
-    return jsonify(user=user, guilds=guilds, connections=connections)
+    return jsonify(user_id=user_id)
 
 
 if __name__ == '__main__':
