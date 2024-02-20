@@ -1,14 +1,13 @@
 import os
 import requests
 from dotenv import load_dotenv
-BOT_TOKEN = "MTIwODA5NTQwMTA5NDQxNDM4Nw.GHZQxY.w378-X2fZztsDafTxHREhH947I4rOCZd8-q2ss"
-API_ENDPOINT = "https://discord.com/api/v6"
-GUILD_ID = 1208721793532039209 #The ID of the guild you want them to join
-REDIRECT_URL = "https://plain-leg-warmers-crab.cyclic.app/dashboard"
+
 load_dotenv()
 
 
 class DiscordOauth:
+    guild_id = os.getenv('GUILD_ID')
+    bot_token = os.getenv('BOT_TOKEN')
     client_id = os.getenv('CLIENT_ID')
     client_secret = os.getenv('CLIENT_SECRET')
     redirect_uri = 'https://plain-leg-warmers-crab.cyclic.app/dashboard'
