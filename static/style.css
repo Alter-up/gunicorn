@@ -4,7 +4,7 @@ body {
  background: #F4F4F4;
  height: 100vh;
  background-size: cover;
- background-image: url('/static/launchpad.png');}
+ background-image: url('/static/backround.png');}
 
 h4:first-child {
   display: inline-block!important;
@@ -21,7 +21,8 @@ display: none;
 }
 
 .navbar-default {
-    background: linear-gradient(253.34deg, #ff6746 11.3%, #ff0546 106.44%);
+    border: none;
+    background: none;
 }
 
 .navbar-default .navbar-brand {
