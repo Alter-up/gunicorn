@@ -1,3 +1,4 @@
+import os
 from flask import Flask, request, redirect, render_template
 from routes.discord_oauth import DiscordOauth
 import requests
