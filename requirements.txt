@@ -13,7 +13,6 @@ requests
 Zenora
 oauthlib
 requests-oauthlib
-discordOauth2
 cachetools
 setuptools
 pyjwt
