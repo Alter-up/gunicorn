@@ -3,11 +3,11 @@ body {
     background: #F4F4F4;
 }
 
-.well-lg::first-child {
+h4:first-child {
   display: inline-block!important;
 }
 
-.well-lg.h4 {
+h4 {
 display: none;
 }
 
