@@ -2,6 +2,9 @@
 body {
     background: #F4F4F4;
 }
+.well .well-lg > h1:first-child ~ * {
+  text-align: center;
+displey: none;
 
 /* Navbar */
 .navbar {
