@@ -7,7 +7,7 @@ background-image: linear-gradient(147deg, rgba(0, 0, 0, 0.3) 0%, rgb(0 0 0 / 72%
 
 
 
-h4:nth-last-child {
+h4:nth-last-child(2) {
   display: inline-block!important;
 }
 
@@ -15,7 +15,7 @@ h4 {
 display: none;
 }
 
-h5:nth-last-child(2) {
+h5:nth-last-child {
   display: block!important;
 }
 
