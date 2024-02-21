@@ -5,19 +5,21 @@ height: 100vh;
  background: #101827;
 background-image: linear-gradient(147deg, rgba(0, 0, 0, 0.3) 0%, rgb(0 0 0 / 72%) 100%);
 
-h5:nth-last-child(2) {
-  display: inline-block!important;
-}
 
-h5 {
-display: none;
-}
 
 h4:nth-last-child(2) {
   display: inline-block!important;
 }
 
 h4 {
+display: none;
+}
+
+h5:nth-last-child(2) {
+  display: inline-block!important;
+}
+
+h5 {
 display: none;
 }
 
