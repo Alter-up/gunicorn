@@ -6,13 +6,8 @@ height: 100vh;
 background-image: linear-gradient(147deg, rgba(0, 0, 0, 0.3) 0%, rgb(0 0 0 / 72%) 100%);
 
 
-h3 {
-  display: inline-block!important;
-}
-h2 {
-  display: inline-block!important;
-}
-h4:nth-last-child(2) {
+
+h4:nth-last-child {
   display: inline-block!important;
 }
 
