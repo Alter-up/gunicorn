@@ -16,7 +16,7 @@ display: none;
 }
 
 h5:nth-last-child(2) {
-  display: inline-block!important;
+  display: block!important;
 }
 
 h5 {
