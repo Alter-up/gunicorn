@@ -5,7 +5,7 @@ height: 100vh;
  background: #101827;
 background-image: linear-gradient(147deg, rgba(0, 0, 0, 0.3) 0%, rgb(0 0 0 / 72%) 100%);
 
-h4:first-child {
+h4:last-child {
   display: inline-block!important;
 }
 
