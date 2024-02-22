@@ -10,7 +10,7 @@ html {
 	{
 		display: none;
 	}
-
+}
 
 h4:nth-last-child(2) {
   display: inline-block!important;
