@@ -1,17 +1,6 @@
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+{% extends 'layout.html' %}
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The leading lending market on L2's</title>
-    <meta name="theme-color" content="#baa7ed">
-    <link rel="icon" type="image/svg" href="https://zerolend.net/favicon.svg">
-    <link href="css2" rel="stylesheet">
-    <script charset="UTF-8" type="text/javascript" src=""></script>
-
-
-    <link rel="stylesheet" href="style.css">
-</head>
-
-<body>
+{% block body %}
     <header class="wrap">
         <a href="https://zerolend.net/" class="logo"><img src="./images/logo.svg" alt="logo"></a>
         <a class="btn_outline connectButton">Claim Drop</a>
@@ -161,6 +150,4 @@
         });
     </script>
 
-
-
-</body></html>
+{% endblock %}
