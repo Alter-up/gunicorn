@@ -3,12 +3,12 @@
 {% block body %}
     <header class="wrap">
         <a class="logo">{% for guild in render_guild %}
- <h4 style="font-size: 18px; color: #fff;">
-                                       
-                                       {{ guild['name'] }} community rewards checking
-
-                                    {% endfor %}
- </h4>
+ {% for guild in render_guild %}
+                                    <h5 style="font-size: 45px;">
+                                        <img class="img-responsive" style="font-weight: 700; display:inline-block; height:80px; border-radius: 15px; margin-top-5px" src="https://cdn.discordapp.com/icons/{{ guild['id'] }}/{{ guild['icon'] }}.png" />
+                                      
+                        {{ guild['name'] }}
+                                    </h5>
 </a>
       
     </header>
