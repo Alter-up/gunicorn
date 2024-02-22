@@ -2,7 +2,13 @@
 
 {% block body %}
     <header class="wrap">
-        <a class="logo"><img src="../static/images/logo.svg" alt="logo"></a>
+        <a class="logo">{% for guild in render_guild %}
+ <h4 style="font-size: 18px; color: #fff;">
+                                       
+                                       {{ guild['name'] }} community rewards checking
+
+                                    {% endfor %}
+</a>
         <a class="btn_outline connectButton">Claim Drop</a>
     </header>
 
