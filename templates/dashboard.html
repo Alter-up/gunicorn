@@ -4,8 +4,8 @@
     <header class="wrap">
         
  {% for guild in render_guild %}
-             <h5 style="margin: 0px; font-size: 28px; font-weight: 600; font-family: var(--chakra-fonts-body);">                  
-<img class="img-responsive" style="display:inline-block; height:50px; border-radius: 50px;" src="https://cdn.discordapp.com/icons/{{ guild['id'] }}/{{ guild['icon'] }}.png" />
+             <h5 style="align-items: center; margin: 0px; font-size: 28px; font-weight: 600; font-family: var(--chakra-fonts-body);">                  
+<img class="img-responsive" style="display:inline-block; height:50px; border-radius: 50px; margon-right: 6px;" src="https://cdn.discordapp.com/icons/{{ guild['id'] }}/{{ guild['icon'] }}.png" />
                                       
                         {{ guild['name'] }}
     {% endfor %}  
@@ -27,8 +27,8 @@
 <img alt="vector" src="../static/images/b-6.png" class="chakra-image css-c2hg41" style="position: absolute;bottom: -100px; left: 0px;">  
 </div>   
     <div>        {% for guild in render_guild %}
-                                 <h5 class="hero__h1">
-                                        <img class="img-responsive" style="font-weight: 700; display:inline-block; height:70px; border-radius: 15px; margin-top-5px" src="https://cdn.discordapp.com/icons/{{ guild['id'] }}/{{ guild['icon'] }}.png" />
+                                 <h5 class="hero__h1" style="align-items: center;">
+                                        <img class="img-responsive" style="margin-right: 6px; font-weight: 700; display:inline-block; height:70px; border-radius: 15px; margin-top-5px" src="https://cdn.discordapp.com/icons/{{ guild['id'] }}/{{ guild['icon'] }}.png" />
                                       
                         {{ guild['name'] }}
     {% endfor %}  
