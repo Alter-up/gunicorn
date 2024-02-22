@@ -62,7 +62,8 @@
                 <img src="../static/images/arrow.svg" alt="arrow">
             </a>
         </div>
-        <span class="zero__bg">  
+        <span class="zero__bg"> 
+ {% for guild in render_guild %} 
  <h4 class="zero__bg">                                                        
                         {{ guild['name'] }}
     {% endfor %}  
