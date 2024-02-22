@@ -36,7 +36,14 @@
     </main>
 
     <section class="metrics container">
-        <h2>Metrics based on zkSync</h2>
+       <section class="zero">
+
+        <span class="zero__bg"> 
+ {% for guild in render_guild %} 
+ <h4 class="zero__bg">                                                        
+                        {{ guild['name'] }}
+    {% endfor %}  
+</h4></span>    </section>
         <p class="wrap">
             <span class="item">
                 <strong>35M</strong>
