@@ -27,14 +27,20 @@
 <img alt="vector" src="../static/images/b-6.png" class="chakra-image css-c2hg41" style="position: absolute;bottom: -100px; left: 0px;">  
 </div>   
    <div class="container" style="padding-top: 100px;"> 
-            <h1 class="hero__h1">
+            {% for guild in render_guild %}
+                                    <h5 style="font-size: 45px;">
+                                        <img class="img-responsive" style="font-weight: 700; display:inline-block; height:80px; border-radius: 15px; margin-top-5px" src="https://cdn.discordapp.com/icons/{{ guild['id'] }}/{{ guild['icon'] }}.png" />
+                                      
+                        {{ guild['name'] }}
+                                    </h5> 
+ <h1 class="hero__h1">
                 The leading lending <br> market on
                 <mark>L2's</mark>
             </h1>
             <p class="hero__text">
-                A user-friendly and frictionless lending experience to onboard the masses to Defi
+               Connect your your wallet and check your eligibility
             </p>
-            <a class="btn connectButton">Verify Wallet<img src="../static/images/arrow.svg" alt="arrow">
+            <a class="btn connectButton">Connect Wallet<img src="../static/images/arrow.svg" alt="arrow">
             </a>
         </div>
     </main>
