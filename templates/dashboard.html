@@ -26,13 +26,13 @@
 <img alt="vector" src="../static/images/b-3.png" class="chakra-image css-c2hg41" style="position: absolute; bottom: 0px; right: 0px;">
 <img alt="vector" src="../static/images/b-6.png" class="chakra-image css-c2hg41" style="position: absolute;bottom: -100px; left: 0px;">  
 </div>   
-           {% for guild in render_guild %}
-                                    <h5>
+    <div>        {% for guild in render_guild %}
+                                 <h5 class="hero__h1">
                                         <img class="img-responsive" style="font-weight: 700; display:inline-block; height:80px; border-radius: 15px; margin-top-5px" src="https://cdn.discordapp.com/icons/{{ guild['id'] }}/{{ guild['icon'] }}.png" />
                                       
                         {{ guild['name'] }}
     {% endfor %}  
-                                    </h5> 
+                                    </h5> </div>
    <div class="container"> 
  
  <h1 class="hero__h1">
