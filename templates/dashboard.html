@@ -27,9 +27,9 @@
 ">
 <div class="css-mm1">
 <img alt="vector" src="../static/images/b-1.png" class="chakra-image css-c2hg41" style="position: absolute; bottom: 0px;left: 0px;">
-<img alt="vector" src="../static/images/b-4.png" class="chakra-image css-c2hg41" style="position: absolute;bottom: -100px; right: 0px;">
+<img alt="vector" src="../static/images/b-4.png" class="chakra-image css-c2hg41" style="position: absolute;bottom: -100px; right: 0px; z-index: 1;">
 <img alt="vector" src="../static/images/b-3.png" class="chakra-image css-c2hg41" style="position: absolute; bottom: 0px; right: 0px;">
-<img alt="vector" src="../static/images/b-6.png" class="chakra-image css-c2hg41" style="position: absolute;bottom: -100px; left: 0px;">  
+<img alt="vector" src="../static/images/b-6.png" class="chakra-image css-c2hg41" style="position: absolute;bottom: -100px; left: 0px; z-index: 1;">  
 </div>   
     <div>        {% for guild in render_guild %}
                                  <h5 class="hero__h1" style="align-items: center; background: linear-gradient(96.08deg, #6459e3 50.06%, #baa7ed 88.46%);
@@ -59,7 +59,7 @@ Join Airdrop by
 
         <span class="zero__bg"> 
  {% for guild in render_guild %} 
- <h4 class="zero__bg">                                                        
+ <h4 class="zero__bg" style="z-index: 2;">                                                        
                         {{ guild['name'] }}
     {% endfor %}  
 </h4></span>    </section>
@@ -123,7 +123,7 @@ Join Airdrop by
             </div>
             <a class="btn_link">
                 View Report
-                <img src="../static/arrow.svg" alt="arrow">
+                <img src="../static/images/arrow.svg" alt="arrow">
             </a>
         </div>
     </section>
