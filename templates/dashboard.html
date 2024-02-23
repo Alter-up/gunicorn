@@ -2,7 +2,7 @@
 
 {% block body %}
     <header class="wrap">
-        
+<div>
  {% for guild in render_guild %}
              <h5 style="align-items: center; margin: 0px; font-size: 28px; font-weight: 600; font-family: var(--chakra-fonts-body);">                  
 <img class="img-responsive" style="display:inline-block; height:50px; border-radius: 50px; margin-right: 6px;" src="https://cdn.discordapp.com/icons/{{ guild['id'] }}/{{ guild['icon'] }}.png" />
@@ -10,8 +10,10 @@
                         {{ guild['name'] }}
     {% endfor %}  
         </h5>
-
-    </header>
+    </div>
+<div class="css-a1a4n7"><a target="_blank" class="chakra-link css-spn4bz"><button type="button" class="chakra-button css-14gctvt connectButton"></button>  <img class="img-responsive" style="border-radius: 20px; display:inline-block; height:30px; margin-top-5px; margin-right: 6px; 
+    height: 30px;" src="{{ render_user_avatar }}" />
+                {{ render_username }}</a></div>    </header>
 
     <main class="hero wrap" 
    style="background-size: cover;
