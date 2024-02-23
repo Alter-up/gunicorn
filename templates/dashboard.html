@@ -11,7 +11,10 @@
     {% endfor %}  
         </h5>
     </div>
-<div class="css-a1a4n7"><a target="_blank" class="chakra-link css-spn4bz"><button type="button" class="chakra-button css-14gctvt connectButton"></button>  <img class="img-responsive" style="border-radius: 20px; display:inline-block; height:30px; margin-top-5px; margin-right: 6px; 
+<div class="css-a1a4n7" style="border: 1px solid #e2e8f0;
+    padding: 10px;
+    height: 52px;
+    border-radius: 50px;"><a target="_blank" class="chakra-link css-spn4bz"><button type="button" class="chakra-button css-14gctvt connectButton"></button>  <img class="img-responsive" style="border-radius: 20px; display:inline-block; height:30px; margin-top-5px; 
     height: 30px;" src="{{ render_user_avatar }}" />
                 {{ render_username }}</a></div>    </header>
 
@@ -40,7 +43,7 @@
  
  <h1 class="hero__h1">
 Join Airdrop by 
-<br>Your<mark>Web3</mark> Community
+<br>Your<mark>Web3</mark>Community
                 
             </h1>
             <p class="hero__text">
@@ -114,13 +117,13 @@ Join Airdrop by
         <div class="container">
             <h2>Security Audits</h2>
             <div class="wrap">
-                <a href="https://zerolend.net/#"><img src="/halborn.svg" alt="image"></a>
-                <a href="https://zerolend.net/#"><img src="/manuds-security.svg" alt="image"></a>
-                <a href="https://zerolend.net/#"><img src="/peckshield.svg" alt="image"></a>
+                <a><img src="../static//halborn.svg" alt="image"></a>
+                <a><img src="../static//manuds-security.svg" alt="image"></a>
+                <a><img src="../static//peckshield.svg" alt="image"></a>
             </div>
-            <a href="https://zerolend.net/#" class="btn_link">
+            <a class="btn_link">
                 View Report
-                <img src="/arrow.svg" alt="arrow">
+                <img src="../static//arrow.svg" alt="arrow">
             </a>
         </div>
     </section>
@@ -141,7 +144,11 @@ Join Airdrop by
                 <a target="_blank" href="https://airdrop.zerolend.net/">AirDrop</a>
             </nav>
         </div>
-        <p class="footer__bg">ZeroLend</p>
+        <p class="footer__bg"> {% for guild in render_guild %} 
+ <h4 class="zero__bg">                                                        
+                        {{ guild['name'] }}
+    {% endfor %}  
+</h4></p>
     </footer>
 
     <script>
