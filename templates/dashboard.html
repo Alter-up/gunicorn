@@ -133,7 +133,11 @@ Join Airdrop by
             <div class="col">
                 <h2 class="hero__h1">
                     Step into the <br>
-                    void with ZeroLend
+                    void with 
+<div> {% for guild in render_guild %} <h4 class="zero__bg" style="justify-content: center;">                                                        
+                        {{ guild['name'] }}
+    {% endfor %}  
+</h4></div>
                 </h2>
                 <p class="footer__text">Borrow/Lend on the fastest and largest lending market on L2's</p>
             </div>
