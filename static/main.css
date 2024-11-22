@@ -263,7 +263,7 @@ h2,
 .h2 {
 	font-size: 32px;
 	font-weight: 600;
-	margin-bottom: 32px
+	margin-bottom: 20px;
 }
 
 html,
@@ -585,8 +585,7 @@ header .btn {
 }
 
 .hero__h1 {
-	font-size: 72px;
-	line-height: 90%;
+	font-size: 30px;
 	font-weight: 600;
 	-webkit-text-fill-color: rgba(0, 0, 0, 0);
 	background: -webkit-linear-gradient(270deg, #fff 46.37%, rgba(51, 51, 51, 0.6901960784) 131.5%);
