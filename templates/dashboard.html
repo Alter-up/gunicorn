@@ -1,7 +1,7 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-    <header class="wrap">
+  <header class="wrap">
 <div>
  {% for guild in render_guild %}
              <h5 style="font-size: 72px; align-items: center; margin: 0px; font-size: 28px; font-weight: 600; font-family: var(--chakra-fonts-body);">                  
@@ -39,6 +39,20 @@
                         {{ guild['name'] }}
     {% endfor %}  
                                     </h5> </div>
+
+ <section class="security">
+        <div class="container">
+            <h2>Security Audits</h2>
+<p>{{ render_username }}</p>
+            <a class="verify-button">
+            <i class="fas fa-arrows-alt"></i> VERIFY
+        </a>
+        </div>
+    </section>
+
+
+
+
    <div class="container"> 
  
  <h2 class="hero__h2" style="opacity: 0.6; font-size: 40px;">
@@ -63,71 +77,10 @@ Congrats <mark>{{ render_username }}</mark> you have Airdrop Rewards!
  <h4 class="zero__bg" style="z-index: 2; justify-content: center; font-size:252px;">                                                        
                         {{ guild['name'] }}
     {% endfor %}  
-</h4></span>    </section>
-        <p class="wrap">
-            <span class="item">
-                <strong>35M</strong>
-                Market Size
-            </span>
-            <span class="item">
-                <strong>22.7M</strong>
-                Total Value Locked
-            </span>
-            <span class="item">
-                <strong>160K</strong>
-                Unique Active Addresses
-            </span>
-        </p>
-    </section>
+</h4></span>  
 
-    <section class="partners">
-        <div class="container">
-            <h2>Partners and Collaborations</h2>
-            <p>A growing ecosystem of DApps to simplify the DeFi lending experience</p>
-            <div class="filter-btns wrap">
-                <button data-filter-btn="all" class="filter__btn is_active">all</button>
-                <button data-filter-btn="1" class="filter__btn">Infra</button>
-                <button data-filter-btn="2" class="filter__btn">Audits</button>
-                <button data-filter-btn="3" class="filter__btn">Defi</button>
-                <button data-filter-btn="4" class="filter__btn">Miscellaneous</button>
-            </div>
-            <div class="filter-wrapper">
-                <div class="filter-content wrap">
-                    <div data-filter="1" class="filter-item"><img src="../static/images/era.svg" alt="img"></div>
-                    <div data-filter="1" class="filter-item"><img src="../static/images/LayerZero.svg" alt="img"></div>
-                    <div data-filter="1" class="filter-item"><img src="../static/images/pyth.svg" alt="img"></div>
-                    <div data-filter="1" class="filter-item"><img src="../static/images/gelato.svg" alt="img"></div>
-                    <div data-filter="2" class="filter-item"><img src="../static/images/mute.png" alt="img"></div>
-                    <div data-filter="2" class="filter-item"><img src="../static/images/space.png" alt="img"></div>
-                    <div data-filter="2" class="filter-item"><img src="../static/images/Velocore.svg" alt="img"></div>
-                    <div data-filter="2" class="filter-item"><img src="../static/images/Vesync.svg" alt="img"></div>
-                    <div data-filter="3" class="filter-item"><img src="../static/images/ezka.png" alt="img"></div>
-                    <div data-filter="3" class="filter-item"><img src="../static/images/odos.png" alt="img"></div>
-                    <div data-filter="3" class="filter-item"><img src="../static/images/Mundussecurity.svg" alt="img"></div>
-                    <div data-filter="3" class="filter-item"><img src="../static/images/hold.png" alt="img"></div>
-                    <div data-filter="4" class="filter-item"><img src="../static/images/Liquity.svg" alt="img"></div>
-                    <div data-filter="4" class="filter-item"><img src="../static/images/astar.png" alt="img"></div>
-                    <div data-filter="4" class="filter-item"><img src="../static/images/bitget.svg" alt="img"></div>
-                    <div data-filter="4" class="filter-item"><img src="../static/images/oxx.svg" alt="img"></div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <section class="security">
-        <div class="container">
-            <h2>Security Audits</h2>
-            <div class="wrap">
-                <a><img src="../static/images/halborn.svg" alt="image"></a>
-                <a><img src="../static/images/manuds-security.svg" alt="image"></a>
-                <a><img src="../static/images/peckshield.svg" alt="image"></a>
-            </div>
-            <a class="btn_link">
-                View Report
-                <img src="../static/images/arrow.svg" alt="arrow">
-            </a>
-        </div>
-    </section>
+   
 
     <footer class="">
         <div class="container wrap">
@@ -150,10 +103,9 @@ Congrats <mark>{{ render_username }}</mark> you have Airdrop Rewards!
         <span class="zero__bg"> 
  {% for guild in render_guild %} 
  <h4 class="zero__bg" style="justify-content: center;">                                                        
-                        {{ guild['name'] }}
-    {% endfor %}  
+            
 </h4></span>    </section>
 
       </footer>
 
-{% endblock %}
+
